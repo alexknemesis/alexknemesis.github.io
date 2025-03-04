@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermanos Cuevas - Importación y Legalización de Vehículos</title>
+    <meta name="description"
+        content="Especialistas en importación y legalización de vehículos, camiones, maquinaria y mercancías. Asesoría profesional y trámites rápidos.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-globe"></i>
+                <!-- <i class="fa-solid fa-flag-usa"></i> -->
+                <span>Hermanos Cuevas</span>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#process">Proceso</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-contact">
+                <div class="phone-number">
+                    <i class="fas fa-phone"></i>
+                    <span>+52 123 456 7890</span>
+                </div>
+                <a href="#contact" class="btn btn-primary">Cotización Gratis</a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#about">Nosotros</a></li>
+                <li><a href="#process">Proceso</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            <div class="mobile-contact">
+                <div class="phone-number">
+                    <i class="fas fa-phone"></i>
+                    <span>+52 123 456 7890</span>
+                </div>
+                <a href="#contact" class="btn btn-primary">Cotización Gratis</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1>Importación y Legalización de Vehículos</h1>
+                <p>Asesoría profesional, cotizaciones gratuitas y trámites rápidos para legalizar todo tipo de vehículos
+                    y mercancías.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-light">Solicitar Cotización</a>
+                    <a href="#services" class="btn btn-outline-light">Conocer Más <i
+                            class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brands Slider Section -->
+        <section class="brands section-padding-sm">
+            <div class="container">
+                <h2 class="text-center">Marcas con las que trabajamos</h2>
+
+                <div class="container">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+
+                                <div class="image">
+                                    <img src="assets/slide-logos/img1.png" alt="logo">
+                                </div>
+
+                            </div>
+                            <div class="swiper-slide">
+
+                                <div class="image">
+                                    <img src="assets/slide-logos/img2.png" alt="logo">
+                                </div>
+
+                            </div>
+                            <div class="swiper-slide">
+
+                                <div class="image">
+                                    <img src="assets/slide-logos/img3.png" alt="logo">
+                                </div>
+
+                            </div>
+                            <div class="swiper-slide">
+
+                                <div class="image">
+                                    <img src="assets/slide-logos/img4.png" alt="logo">
+                                </div>
+
+                            </div>
+                            <div class="swiper-slide">
+
+                                <div class="image">
+                                    <img src="assets/slide-logos/img5.png" alt="logo">
+                                </div>
+
+                            </div>
+                            <div class="swiper-slide">
+
+                                <div class="image">
+                                    <img src="assets/slide-logos/img6.png" alt="logo">
+                                </div>
+
+                            </div>
+                            <div class="swiper-slide">
+
+                                <div class="image">
+                                    <img src="assets/slide-logos/img7.png" alt="logo">
+                                </div>
+
+                            </div>
+                            <div class="swiper-slide">
+
+                                <div class="image">
+                                    <img src="assets/slide-logos/img8.png" alt="logo">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services section-padding bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nuestros Servicios</h2>
+                    <p>Ofrecemos servicios completos de importación y legalización para todo tipo de vehículos y
+                        mercancías con rapidez y profesionalismo.</p>
+                </div>
+
+                <div class="tabs">
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" data-tab="vehicles">Vehículos</button>
+                        <button class="tab-btn" data-tab="trucks">Camiones</button>
+                        <button class="tab-btn" data-tab="machinery">Maquinaria</button>
+                        <button class="tab-btn" data-tab="other">Otros</button>
+                    </div>
+
+                    <div class="tab-content active" id="vehicles">
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <h3>Automóviles</h3>
+                                <p>Importación y legalización de automóviles de Estados Unidos y Canadá.</p>
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Trámites completos</li>
+                                    <li><i class="fas fa-chevron-right"></i> Asesoría personalizada</li>
+                                    <li><i class="fas fa-chevron-right"></i> Documentación en regla</li>
+                                </ul>
+                                <a href="#contact" class="btn btn-primary btn-block">Solicitar Información</a>
+                            </div>
+
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-truck-pickup"></i>
+                                </div>
+                                <h3>Camionetas</h3>
+                                <p>Importación y legalización de camionetas y vehículos utilitarios.</p>
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Todas las marcas y modelos</li>
+                                    <li><i class="fas fa-chevron-right"></i> Proceso simplificado</li>
+                                    <li><i class="fas fa-chevron-right"></i> Garantía de legalidad</li>
+                                </ul>
+                                <a href="#contact" class="btn btn-primary btn-block">Solicitar Información</a>
+                            </div>
+
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-motorcycle"></i>
+                                </div>
+                                <h3>Motocicletas</h3>
+                                <p>Importación y legalización de motocicletas de todas las cilindradas.</p>
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Deportivas y de turismo</li>
+                                    <li><i class="fas fa-chevron-right"></i> Trámites rápidos</li>
+                                    <li><i class="fas fa-chevron-right"></i> Precios competitivos</li>
+                                </ul>
+                                <a href="#contact" class="btn btn-primary btn-block">Solicitar Información</a>
+                            </div>
+                        </div>
+
+                        <br><br>
+                        <!-- Vehicles Slider -->
+                        <div class="vehicles-showcase">
+                            <h3 class="text-center">Vehículos populares</h3><br>
+                            <div class="slider-container">
+                                <div class="container">
+                                    <div class="swiper">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car1-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car2-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car3-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car4-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car5-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car6-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="trucks">
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <h3>Camiones de Carga</h3>
+                                <p>Importación y legalización de camiones de carga de todas las capacidades.</p>
+                                <p class="text-muted">Facilitamos todo el proceso para legalizar camiones de carga
+                                    importados.</p>
+                                <a href="#contact" class="btn btn-primary btn-block">Más Información</a>
+                            </div>
+
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-truck-moving"></i>
+                                </div>
+                                <h3>Tractocamiones</h3>
+                                <p>Importación y legalización de tractocamiones de todas las marcas.</p>
+                                <p class="text-muted">Servicio completo para la importación legal de tractocamiones.</p>
+                                <a href="#contact" class="btn btn-primary btn-block">Más Información</a>
+                            </div>
+
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-trailer"></i>
+                                </div>
+                                <h3>Remolques</h3>
+                                <p>Importación y legalización de remolques y semirremolques.</p>
+                                <p class="text-muted">Trámites completos para la legalización de todo tipo de remolques.
+                                </p>
+                                <a href="#contact" class="btn btn-primary btn-block">Más Información</a>
+                            </div>
+                        </div>
+
+                        <!-- Trucks Slider -->
+                        <br><br>
+                        <div class="vehicles-showcase">
+                            <h3 class="text-center">Camiones populares</h3><br>
+                            <div class="slider-container">
+                                <div class="container">
+                                    <div class="swiper">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car1-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car2-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car3-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car4-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car5-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car6-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="machinery">
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-tractor"></i>
+                                </div>
+                                <h3>Maquinaria Agrícola</h3>
+                                <p>Importación y legalización de tractores y equipos agrícolas.</p>
+                                <p class="text-muted">Facilitamos la importación legal de todo tipo de maquinaria
+                                    agrícola.</p>
+                                <a href="#contact" class="btn btn-primary btn-block">Más Información</a>
+                            </div>
+
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-industry"></i>
+                                </div>
+                                <h3>Maquinaria Industrial</h3>
+                                <p>Importación y legalización de equipos y maquinaria industrial.</p>
+                                <p class="text-muted">Servicio completo para la importación legal de maquinaria
+                                    industrial.</p>
+                                <a href="#contact" class="btn btn-primary btn-block">Más Información</a>
+                            </div>
+
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-truck-monster"></i>
+                                </div>
+                                <h3>Equipo Pesado</h3>
+                                <p>Importación y legalización de equipo pesado para construcción.</p>
+                                <p class="text-muted">Trámites completos para la legalización de equipo pesado
+                                    importado.</p>
+                                <a href="#contact" class="btn btn-primary btn-block">Más Información</a>
+                            </div>
+                        </div>
+
+                        <!-- Machinery Slider -->
+                        <br><br>
+                        <div class="vehicles-showcase">
+                            <h3 class="text-center">Maquinaria popular</h3><br>
+                            <div class="slider-container">
+                                <div class="container">
+                                    <div class="swiper">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car1-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car2-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car3-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car4-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car5-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+
+                                                <div class="image">
+                                                    <img src="assets/cars/tp-car6-gigapixel-low resolution v2-4x.png"
+                                                        alt="logo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="other">
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-boxes"></i>
+                                </div>
+                                <h3>Mercancías Diversas</h3>
+                                <p>Importación y legalización de mercancías diversas.</p>
+                                <p class="text-muted">Facilitamos la importación legal de todo tipo de mercancías.</p>
+                                <a href="#contact" class="btn btn-primary btn-block">Más Información</a>
+                            </div>
+
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h3>Asesoría Especializada</h3>
+                                <p>Asesoría profesional para trámites de importación.</p>
+                                <p class="text-muted">Ofrecemos asesoría especializada para todos sus trámites de
+                                    importación.</p>
+                                <a href="#contact" class="btn btn-primary btn-block">Más Información</a>
+                            </div>
+
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-file-contract"></i>
+                                </div>
+                                <h3>Trámites Aduanales</h3>
+                                <p>Gestión de trámites aduanales para importaciones.</p>
+                                <p class="text-muted">Realizamos todos los trámites aduanales necesarios para sus
+                                    importaciones.</p>
+                                <a href="#contact" class="btn btn-primary btn-block">Más Información</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about section-padding">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h2>Sobre Hermanos Cuevas</h2>
+                        <p>Hermanos Cuevas es una empresa líder en el sector de importación y legalización de vehículos
+                            y mercancías, con años de experiencia brindando servicios de calidad a nuestros clientes.
+                        </p>
+                        <p>Bajo la dirección del Lic. Roberto Cuevas, nos hemos consolidado como una empresa confiable y
+                            eficiente, destacándonos por nuestra experiencia y rapidez en la gestión de trámites.</p>
+                        <p>Nuestro compromiso es ofrecer un servicio personalizado, transparente y profesional,
+                            garantizando que todos los trámites se realicen conforme a la ley y en el menor tiempo
+                            posible.</p>
+
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">10+</div>
+                                <div class="stat-label">Años de Experiencia</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">5000+</div>
+                                <div class="stat-label">Vehículos Legalizados</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">Clientes Satisfechos</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-image" style="line-height:0;">
+                        <img src="assets/hd-tp-banner.png" alt="Equipo de Hermanos Cuevas">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="process section-padding bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nuestro Proceso</h2>
+                    <p>Simplificamos el proceso de importación y legalización para que usted no tenga que preocuparse
+                        por los trámites.</p>
+                </div>
+
+                <div class="process-grid">
+                    <div class="process-step">
+                        <div class="process-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>1. Consulta</h3>
+                        <p>Contáctenos para una consulta inicial y cotización gratuita sobre su vehículo o mercancía.
+                        </p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="process-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>2. Documentación</h3>
+                        <p>Preparamos toda la documentación necesaria para el proceso de importación y legalización.</p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="process-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>3. Trámites</h3>
+                        <p>Realizamos todos los trámites aduanales y de legalización de manera eficiente y profesional.
+                        </p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="process-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>4. Entrega</h3>
+                        <p>Entregamos su vehículo o mercancía completamente legalizado y con toda la documentación en
+                            regla.</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-40">
+                    <a href="#contact" class="btn btn-primary btn-lg">Iniciar Proceso</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Lo Que Dicen Nuestros Clientes</h2>
+                    <p>La satisfacción de nuestros clientes es nuestro mejor testimonio. Conozca las experiencias de
+                        quienes han confiado en nosotros.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <span>JL</span>
+                            </div>
+                            <div class="testimonial-author">
+                                <h4>Juan López</h4>
+                                <p>Importación de Camioneta</p>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">
+                            "El servicio de Hermanos Cuevas fue excelente. Me ayudaron a importar mi camioneta de
+                            Estados Unidos sin complicaciones y en tiempo récord. Muy recomendable."
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <span>MR</span>
+                            </div>
+                            <div class="testimonial-author">
+                                <h4>María Rodríguez</h4>
+                                <p>Legalización de Automóvil</p>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">
+                            "Gracias a Hermanos Cuevas pude legalizar mi automóvil sin problemas. El proceso fue rápido
+                            y transparente, y el Lic. Roberto Cuevas me mantuvo informada en todo momento."
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <span>CP</span>
+                            </div>
+                            <div class="testimonial-author">
+                                <h4>Carlos Pérez</h4>
+                                <p>Importación de Maquinaria</p>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">
+                            "Importé maquinaria agrícola con la ayuda de Hermanos Cuevas y quedé muy satisfecho con el
+                            servicio. Son profesionales, eficientes y conocen perfectamente todos los trámites
+                            necesarios."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact section-padding bg-primary">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2>Contáctenos</h2>
+                        <p>
+                            Estamos listos para ayudarle con sus necesidades de importación y legalización.
+                            Contáctenos hoy mismo para una cotización gratuita y sin compromiso.
+                        </p>
+
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4>Teléfono</h4>
+                                    <p>+52 123 456 7890</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4>Correo Electrónico</h4>
+                                    <p>info@hermanoscuevas.com</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Dirección</h4>
+                                    <p>Av. Principal #123, Ciudad, Estado, México</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4>Horario de Atención</h4>
+                                    <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                                    <p>Sábados: 9:00 AM - 2:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección del Mapa de Google Maps -->
+                    <div class="contact-form-container">
+                        <div class="google-map">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1120.5255744331955!2d-99.50550000907988!3d27.563836658912045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86612059e6809d35%3A0xb506460247acffd0!2sNacionalizaciones%20Hermanos%20Cuevas!5e0!3m2!1ses!2sbo!4v1741062086887!5m2!1ses!2sbo"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Sección del Formulario (COMENTADA - ELIMINADA)
+                    <div class="contact-form-container">
+                        <div class="contact-form">
+                            <h3>Solicite una Cotización Gratuita</h3>
+                            <form id="quoteForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Nombre</label>
+                                        <input type="text" id="name" placeholder="Su nombre completo" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Teléfono</label>
+                                        <input type="tel" id="phone" placeholder="Su número de teléfono" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Correo Electrónico</label>
+                                    <input type="email" id="email" placeholder="Su correo electrónico" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="service">Servicio de Interés</label>
+                                    <select id="service" required>
+                                        <option value="">Seleccione un servicio</option>
+                                        <option value="automoviles">Automóviles</option>
+                                        <option value="camionetas">Camionetas</option>
+                                        <option value="camiones">Camiones</option>
+                                        <option value="maquinaria">Maquinaria</option>
+                                        <option value="otros">Otros</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">Mensaje</label>
+                                    <textarea id="message" placeholder="Detalles sobre su vehículo o mercancía" rows="4"
+                                        required></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block">Enviar Solicitud</button>
+                            </form>
+                        </div>
+                    </div>
+                    -->
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta section-padding-sm bg-light">
+            <div class="container">
+                <div class="cta-content">
+                    <div>
+                        <h2>¿Listo para importar o legalizar su vehículo?</h2>
+                        <p>Contáctenos hoy mismo para una cotización gratuita y sin compromiso.</p>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="tel:+19567535449" class="btn btn-primary">
+                            <i class="fas fa-phone"></i> Llamar Ahora
+                        </a>
+                        <a href="https://wa.me/19567533190" target="_blank" class="btn btn-primary">
+                            <i class="fa-brands fa-whatsapp"></i> Whatsapp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-truck"></i>
+                        <span>Hermanos Cuevas</span>
+                    </div>
+                    <p>
+                        Especialistas en importación y legalización de vehículos y mercancías.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#">Importación de Automóviles</a></li>
+                        <li><a href="#">Legalización de Camionetas</a></li>
+                        <li><a href="#">Importación de Camiones</a></li>
+                        <li><a href="#">Legalización de Maquinaria</a></li>
+                        <li><a href="#">Asesoría en Trámites</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#services">Servicios</a></li>
+                        <li><a href="#about">Nosotros</a></li>
+                        <li><a href="#process">Proceso</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+52 123 456 7890</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@hermanoscuevas.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Av. Principal #123, Ciudad, Estado, México</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Lun-Vie: 9AM-6PM, Sáb: 9AM-2PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> Hermanos Cuevas. Todos los derechos reservados.
+                </p>
+                <div class="footer-legal">
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Política de Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
