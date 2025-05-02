@@ -1,0 +1,96 @@
+{
+    "header": {
+        "location": "Cochabamba - Bolivia",
+        "linkedin": "LinkedIn",
+        "title": "Desarrollador Backend Senior",
+        "subtitle": "Especialista en Cloud, Automatización e IA Generativa"
+    },
+    "profile": {
+        "title": "Perfil Profesional",
+        "content": "Soy un Desarrollador Backend Senior con más de 7 años de experiencia, especializado en startups de alto crecimiento, entornos internacionales y proyectos tecnológicamente exigentes. He demostrado mi capacidad para construir y escalar sistemas backend robustos desde cero, llegando a gestionar plataformas con más de 10 millones de usuarios registrados. Soy experto en el diseño e implementación de arquitecturas cloud nativas (GCP), microservicios, despliegues CI/CD (Docker, GitHub Actions) y la integración de automatizaciones (Zapier, Make). Me considero un pionero en la aplicación práctica y personalización de IA Generativa (Stable Diffusion, entrenamiento LoRA, modelos de video), combinando estas técnicas con herramientas como Photoshop para crear contenido visual de alta calidad y consistencia, mejorando la presencia de marca y el engagement. Me caracterizo por mi rápida adaptabilidad, aprendizaje continuo y mi enfoque proactivo para integrar soluciones de IA en los procesos de desarrollo."
+    },
+    "experience": {
+        "title": "Experiencia Laboral",
+        "yana": {
+            "title": "Yana – México (Remoto)",
+            "positionLabel": "Posición:",
+            "positionValue": "Backend Developer & Miembro Fundador Equipo Técnico",
+            "descriptionLabel": "Logros y Responsabilidades:",
+            "desc1": "Como miembro fundador del equipo técnico (inicialmente 2 backend devs), participé activamente en escalar la plataforma para soportar más de 10 millones de usuarios.",
+            "desc2": "Desarrollé y optimicé APIs RESTful (JSON) clave para la aplicación conversacional principal, asegurando el manejo eficiente de altos volúmenes de tráfico.",
+            "desc3": "Participé en la migración estratégica de la infraestructura a GCP y en la implementación de Docker y CI/CD con GitHub Actions, contribuyendo a mejoras significativas en escalabilidad, tiempo de respuesta y seguridad.",
+            "desc4": "Configuré y administré el sistema de envío masivo y segmentado de correos (+10k) con AWS SES.",
+            "desc5": "Contribuí al diseño e implementación de una arquitectura de microservicios escalable automáticamente, permitiendo el desarrollo modular y despliegues independientes.",
+            "desc6": "Trabajé bajo metodología Scrum, colaborando estrechamente con equipos de frontend, QA y producto."
+        },
+        "easyfx": {
+            "title": "EasyFX Trading – Remoto",
+            "positionLabel": "Posición:",
+            "positionValue": "Integración / conexión entre Plataformas y Automatizaciones",
+            "descriptionLabel": "Descripción:",
+            "desc1": "Configuré y automaticé flujos de datos críticos entre Chargebee, Integromat/Make, el backend y Discord. Implementé notificaciones, control de suscripciones y gestión de accesos premium, optimizando significativamente el proceso de onboarding de clientes."
+        },
+        "freelance": {
+            "title": "Consultor Chatbots & Automatización (Freelance)",
+            "clientsLabel": "Clientes:",
+            "clientsValue": "Modefuel, Visual Encounter, Pernimo",
+            "descriptionLabel": "Descripción:",
+            "desc1": "Desarrollé e integré chatbots (ManyChat, Chatfuel) para tiendas Shopify y aplicaciones financieras. También creé automatizaciones para flujos de ventas, soporte y marketing digital utilizando herramientas como Zapier/Make."
+        },
+        "cemvi": {
+            "title": "CEMVI – Cochabamba, Bolivia",
+            "positionLabel": "Posición:",
+            "positionValue": "Soporte Técnico IT",
+            "descriptionLabel": "Descripción:",
+            "desc1": "Realicé el mantenimiento de sistemas informáticos y proporcioné soporte técnico a usuarios en la planta de producción."
+        }
+    },
+    "skills": {
+        "backend": {
+            "title": "Backend & Cloud",
+            "catLanguages": "Lenguajes",
+            "catFrameworks": "Frameworks",
+            "catArchitecture": "Arquitectura",
+            "catCloud": "Cloud & DevOps",
+            "catDatabases": "Bases de Datos"
+        },
+        "ai": {
+            "title": "IA, Automatización & Frontend",
+            "catGenAI": "IA Generativa",
+            "itemPromptEng": "Prompt Engineering",
+            "itemSD": "Stable Diffusion (SD 1.5, SDXL, Pony, Flux)",
+            "itemLora": "Entrenamiento LoRA (Kohya_ss, One Trainer)",
+            "itemFaceSwap": "Face Swapping (Imagen/Video)",
+            "itemVideoGen": "Generación de Video (Pixverse, Kling, Runway, Veo 2, Wan 2.1)",
+            "itemTools": "Herramientas: ComfyUI, Forge UI, A1111, Google AI Studio",
+            "catAutomation": "Automatización",
+            "catFrontend": "Frontend & Otros",
+            "catMethodologies": "Metodologías"
+        }
+    },
+    "projects": {
+        "title": "Proyectos Personales (IA Generativa)",
+        "imageGen": {
+            "title": "Generación Avanzada de Imágenes y Consistencia",
+            "desc": "He investigado y aplicado modelos como Stable Diffusion (SDXL, Flux) utilizando interfaces como ComfyUI y Forge UI. Desarrollé técnicas de prompt engineering avanzado, entrené modelos LoRA personalizados (con Kohya/OneTrainer) y usé scripts de automatización para generar imágenes fotorrealistas de forma masiva, logrando consistencia de personajes y aplicando face swapping avanzado para mejorar el engagement en redes sociales.",
+            "tech": "Tech: Python, Stable Diffusion, LoRA, ComfyUI, Forge UI"
+        },
+        "videoGen": {
+            "title": "Creación de Video con IA",
+            "desc": "Actualmente experimento y diseño prompts para herramientas de generación de video mediante IA (Pixverse, Kling AI, Runway, Google Veo 2), y he explorado generación local (Wan 2.1), enfocándome en obtener alta calidad y coherencia narrativa/visual en las secuencias generadas.",
+            "tech": "Tech: Pixverse, Kling, Runway, Veo 2 APIs, Wan 2.1"
+        }
+    },
+    "education": {
+        "title": "Educación",
+        "degree": "Ingeniería de Sistemas",
+        "university": "Universidad Mayor de San Simón – Cochabamba, Bolivia"
+    },
+    "languages": {
+        "title": "Idiomas",
+        "spanishLabel": "Español:",
+        "spanishValue": "Nativo",
+        "englishLabel": "Inglés:",
+        "englishValue": "C2 (Competencia profesional completa)"
+    }
+}

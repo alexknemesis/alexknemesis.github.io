@@ -1,53 +1,1257 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Directorio Principal</title>
+    <title>Resume :: Alejandro Ramiro Moya Cardona</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- i18next Scripts -->
+    <script src="https://unpkg.com/i18next@23.7.6/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@2.4.2/i18nextHttpBackend.min.js"></script>
+
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
+            padding: 30px 20px 20px 20px;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #EDEDED;
+            background-image: -webkit-linear-gradient(to right bottom, #222 0%, #444 61%);
+            background-image: -o-linear-gradient(to right bottom, #222 0%, #444 61%);
+            background-image: -moz-linear-gradient(to right bottom, #222 0%, #444 61%);
+            background-image: linear-gradient(to right bottom, #222 0%, #444 61%);
+            color: #444;
         }
-        .container {
-            text-align: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        a {
+            text-decoration: none;
+            color: #0198E1;
         }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .clearfix::after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+
+        .clearfix {
+            display: block;
+        }
+
+        * html .clearfix {
+            height: 1%;
+        }
+
+        .contOut {
+            opacity: 0;
+            width: 100%;
+            max-width: 1080px;
+            margin: 0 auto 6px auto;
+            background: #fff;
+            position: relative;
+            overflow: visible;
+        }
+
+        .contOut::before {
+            position: absolute;
+            width: 6px;
+            margin-top: 6px;
+            top: 0;
+            left: -6px;
+            background: #a1a1a1;
+            content: "";
+            display: block;
+            -webkit-transform: skew(0deg, -61deg);
+            -moz-transform: skew(0deg, -61deg);
+            -ms-transform: skew(0deg, -61deg);
+            -o-transform: skew(0deg, -61deg);
+            transform: skew(0deg, -61deg);
+            height: calc(100% - 6px);
+        }
+
+        .divider {
+            width: 100%;
+            float: left;
+            height: 0;
+            position: relative;
+        }
+
+        .divider::after {
+            position: absolute;
+            width: 100%;
+            margin-top: 0;
+            bottom: -11px;
+            left: -3px;
+            background: #5c5c5c;
+            content: "";
+            display: block;
+            -webkit-transform: skew(-31deg, 0deg);
+            -moz-transform: skew(-31deg, 0deg);
+            -ms-transform: skew(-31deg, 0deg);
+            -o-transform: skew(-31deg, 0deg);
+            transform: skew(-31deg, 0deg);
+            height: 11px;
+        }
+
+        .contIn {
+            width: 100%;
+            float: left;
+        }
+
+        .section {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .section.top {
+            padding-top: 30px;
+            padding-bottom: 15px;
+        }
+
+        .section.top:hover img.logo {
+            -webkit-filter: grayscale(0%);
+            filter: grayscale(0%);
+        }
+
+        .logoCont {
+            float: left;
+            width: 15%;
+            min-width: 70px;
+            padding-right: 20px;
+            box-sizing: border-box;
+        }
+
+        img.logo {
+            width: 100%;
+            max-width: 100px;
+            min-width: 50px;
+            height: auto;
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+            border-radius: 3px;
+            border: solid 1px #ccc;
+            transition: filter 0.3s ease;
+        }
+
         h1 {
-            font-size: 24px;
+            width: calc(85% - 150px);
+            float: left;
+            display: inline-block;
+            font-family: 'Playfair Display', serif;
+            margin: 0 0 5px 0;
+            font-size: 36px;
+            line-height: 1.2;
+            color: #222;
+        }
+
+        p.tagline {
+            float: left;
+            clear: left;
+            width: calc(85% - 150px);
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            line-height: 1.4;
+            color: #555;
+        }
+
+        p.tagline span {
+            display: block;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .moreInfo {
+            float: right;
+            width: 150px;
+            text-align: right;
+        }
+
+        .moreInfo p {
+            margin: 0;
+            line-height: 1.5;
+            font-size: 13px;
+            word-wrap: break-word;
+            color: #444;
+        }
+
+        .moreInfo p a {
+            font-size: 12px;
+            display: block;
+            margin-top: 5px;
+        }
+
+
+        .section.middle {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .job {
+            width: 100%;
+            float: left;
+            margin-bottom: 5px;
+        }
+
+        .job h2 {
+            margin: 0 0 5px 0;
+            font-size: 20px;
+            border-left: solid 0px #fff;
+            padding-left: 0;
+            transition: all 200ms ease-in;
+            position: relative;
+            display: flex;
+            /* Usar flex para alinear elementos internos */
+            justify-content: space-between;
+            /* Pone el span de fecha al final */
+            align-items: center;
+            /* Centra verticalmente */
+        }
+
+        /* Contenedor para el título y el botón +/- */
+        .job h2 .title-icon-wrapper {
+            display: inline-flex;
+            /* Para que estén juntos */
+            align-items: center;
+        }
+
+
+        .job h2:hover {
+            border-left: solid 10px #333;
+            padding-left: 8px;
+            transition: all 100ms ease-in;
+        }
+
+        .job h2 span.job-date {
+            /* Clase específica para la fecha */
+            /* float: right; No necesario con flex */
+            display: inline-block;
+            font-size: 14px;
+            background: #333;
+            color: #fff;
+            padding: 4px 8px;
+            min-width: 100px;
+            text-align: center;
+            border-radius: 3px;
+            margin-left: 10px;
+            font-weight: normal;
+            white-space: nowrap;
+            /* Evita que la fecha se rompa */
+        }
+
+        .job h2 i.fa.openBtn {
+            display: inline-block;
+            margin-left: 10px;
+            color: #0198E1;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            padding: 2px 4px;
+            font-size: 18px;
+        }
+
+        .job h2 i.fa.openBtn:hover {
+            color: #006d9e;
+        }
+
+        .job p {
+            margin: 0;
+            padding-left: 18px;
+            clear: both;
+        }
+
+        .job .job-details-content {
+            margin: 10px 0 15px 0;
+            padding: 0;
+            line-height: 1.6;
+            font-size: 15px;
+            opacity: 0;
+            display: none;
+        }
+
+        .job p strong {
+            display: inline-block;
+            min-width: 90px;
+            font-weight: 700;
+        }
+
+        .job p ul {
+            margin: 10px 0 5px 20px;
+            padding: 0;
+            list-style: disc;
+        }
+
+        .job p li {
+            margin-bottom: 8px;
+        }
+
+        .job p span.brag {
+            display: block;
+            margin: 15px 0 10px 0;
+            font-style: italic;
+            background: #ebebeb;
+            padding: 15px 20px 15px 20px;
             color: #333;
+            text-align: justify;
+            border-left: solid 4px #b8b8b8;
+            line-height: 1.5;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2%;
             margin-bottom: 20px;
         }
-        a {
-            display: inline-block;
-            margin: 10px;
-            padding: 15px 25px;
+
+        .skills {
+            flex: 1;
+            min-width: 250px;
+            display: block;
+            padding: 15px 0 20px 0;
+            color: #fff;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .skills h3 {
+            margin: 0 20px 15px 20px;
+            text-transform: uppercase;
+            position: relative;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 8px;
+        }
+
+        .skills h3 .fa {
+            position: absolute;
+            top: -4px;
+            right: 0;
+            padding: 5px 7px;
+            border-radius: 3px;
             font-size: 18px;
+        }
+
+        .skills ul {
+            font-size: 14px;
+            list-style: none;
+            margin: 0;
+            padding: 0 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .skills ul li {
+            padding: 5px 8px;
+            margin: 0;
+            border-radius: 3px;
+            line-height: 1.2;
+        }
+
+        .skills ul li.light {
+            opacity: 0.7;
+        }
+
+        .skills ul li.prim {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .skills ul li.prim:first-child {
+            margin-top: 0;
+        }
+
+        .skills.code {
+            background: #0198E1;
+        }
+
+        .skills.code h3 .fa {
+            background: #34adec;
+            box-shadow: inset 0 1px 2px #005882;
+        }
+
+        .skills.code ul li {
+            background: #007fbf;
+        }
+
+        .skills.code ul li:hover {
+            background: #008ccd;
+        }
+
+        .skills.code ul li.prim {
+            background: #005f90;
+        }
+
+        .skills.software {
+            background: #608341;
+        }
+
+        .skills.software h3 .fa {
+            background: #83a666;
+            box-shadow: inset 0 1px 2px #3a5026;
+        }
+
+        .skills.software ul li {
+            background: #4f6c35;
+        }
+
+        .skills.software ul li:hover {
+            background: #58773b;
+        }
+
+        .skills.software ul li.prim {
+            background: #3e5529;
+        }
+
+        .contracts {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px 30px;
+        }
+
+        .contracts h3 {
+            margin: 0 0 20px 0;
+            font-size: 18px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        .contract {
+            box-sizing: border-box;
+            padding: 15px;
+            width: 100%;
+            background: #f0f0f0;
+            border: solid 1px #ddd;
+            box-shadow: 0 1px 2px #ccc;
+            color: #444;
+            float: left;
+            margin-bottom: 15px;
+            position: relative;
+            border-radius: 3px;
+        }
+
+        .contract h4 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            color: #0198E1;
+        }
+
+        .contract p.desc {
+            font-size: 14px;
+            color: #555;
+            word-wrap: break-word;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .contract span.date {
+            position: absolute;
+            bottom: 8px;
+            right: 10px;
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+        }
+
+        ul.buttons {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        ul.buttons li {
+            flex: 1 1 150px;
+            text-align: center;
+            border-radius: 3px;
+            position: relative;
+            transition: all 150ms ease-in-out;
+            border-bottom-width: 3px;
+            border-bottom-style: solid;
+        }
+
+        ul.buttons li a {
+            display: block;
+            padding: 12px 5px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        ul.buttons li:hover {
+            transform: translateY(-2px);
+            border-bottom-width: 3px;
+        }
+
+        ul.buttons li:nth-child(1) {
+            background: #B5509C;
+            border-bottom-color: #7d386d;
+        }
+
+        ul.buttons li:nth-child(1):hover {
+            background: #c969b3;
+            border-bottom-color: #a14888;
+        }
+
+        ul.buttons li:nth-child(2) {
+            background: #608341;
+            border-bottom-color: #425a2d;
+        }
+
+        ul.buttons li:nth-child(2):hover {
+            background: #7a9d5a;
+            border-bottom-color: #506f38;
+        }
+
+        ul.buttons li:nth-child(3) {
+            background: #0198E1;
+            border-bottom-color: #006a9e;
+        }
+
+        ul.buttons li:nth-child(3):hover {
+            background: #27a9e8;
+            border-bottom-color: #0080b9;
+        }
+
+        ul.buttons li:nth-child(4) {
+            background: #FF6103;
+            border-bottom-color: #b34402;
+        }
+
+        ul.buttons li:nth-child(4):hover {
+            background: #ff7e33;
+            border-bottom-color: #d95203;
+        }
+
+        /* Social Media Icons Styles */
+        ul.sm {
+            list-style: none;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            /* <-- Mantenido a la izquierda */
+            margin: 0;
+            padding: 0;
+            z-index: 10;
+        }
+
+        ul.sm li {
+            display: inline-block;
+            margin-right: 8px;
+            margin-left: 0;
+        }
+
+        ul.sm li a {
+            color: #ccc;
+            font-size: 18px;
+            transition: color 0.2s ease;
+        }
+
+        ul.sm li a:hover {
             color: #fff;
             text-decoration: none;
-            background-color: #007BFF;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
         }
-        a:hover {
-            background-color: #0056b3;
+
+        /* Language Switcher Styles (Fixed Position) */
+        #lang-switcher {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 100;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        #lang-switcher button {
+            background: none;
+            border: none;
+            color: #ccc;
+            cursor: pointer;
+            padding: 0 5px;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        #lang-switcher button:hover,
+        #lang-switcher button.active {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #lang-switcher button.active {
+            text-decoration: underline;
+        }
+
+
+        @media (max-width: 1010px) {
+            .skills-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .skills {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 850px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            p.tagline {
+                font-size: 15px;
+            }
+
+            .logoCont {
+                width: 25%;
+            }
+
+            h1,
+            p.tagline {
+                width: calc(75% - 150px);
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .contracts .contract {
+                width: calc(50% - 10px);
+            }
+
+            .contracts .contract:nth-child(odd) {
+                margin-right: 20px;
+            }
+
+            .contracts .contract:nth-child(even) {
+                margin-right: 0;
+            }
+
+            /* Ajustar posicionamiento de fecha en H2 */
+            .job h2 {
+                flex-wrap: wrap;
+                /* Permitir que fecha baje */
+            }
+
+            .job h2 span.job-date {
+                order: 3;
+                /* Mover fecha al final */
+                width: 100%;
+                /* Que ocupe ancho completo */
+                text-align: left;
+                /* Alinear a la izquierda */
+                margin-top: 5px;
+                margin-left: 0;
+                background: none;
+                color: #666;
+                padding: 0;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 620px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .moreInfo {
+                width: 120px;
+            }
+
+            h1,
+            p.tagline {
+                width: calc(100% - 140px - 25%);
+            }
+
+            .job h2 span.job-date {
+                /* Ya se maneja en el breakpoint anterior */
+                /* No necesita cambios aquí */
+            }
+
+            .job h2 i.fa.openBtn {
+                margin-left: 5px;
+            }
+
+            .job p {
+                padding-left: 10px;
+            }
+
+            .job .job-details-content {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 570px) {
+            ul.buttons li {
+                flex-basis: 100%;
+            }
+
+            .skills ul {
+                justify-content: flex-start;
+            }
+
+            .skills ul li {
+                padding: 4px 6px;
+                font-size: 13px;
+            }
+
+            .contracts .contract {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            #lang-switcher {
+                top: 5px;
+                right: 10px;
+            }
+
+            ul.sm {
+                top: 5px;
+                left: 10px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .section {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .logoCont {
+                width: 30%;
+                padding-right: 10px;
+            }
+
+            h1,
+            p.tagline {
+                width: 70%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .moreInfo {
+                width: 100%;
+                float: none;
+                text-align: left;
+                margin-top: 10px;
+                font-size: 12px;
+            }
+
+            p.tagline {
+                margin-top: 5px;
+            }
+
+            .job h2 {
+                font-size: 18px;
+            }
+
+            ul.sm,
+            #lang-switcher {
+                position: absolute;
+                margin-top: 0;
+            }
+
+            ul.sm {
+                left: 10px;
+                top: 10px;
+            }
+
+            #lang-switcher {
+                right: 10px;
+                top: 10px;
+            }
+
+            #header-utils {
+                display: none;
+            }
+
+        }
+
+        .job.static-section p {
+            display: block !important;
+            padding-left: 0;
+        }
+
+        .job.static-section .job-details-content {
+            display: block !important;
+            opacity: 1 !important;
+            margin: 10px 0 15px 0;
+        }
+
+        .job:not(.static-section) h2 {
+            cursor: pointer;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Bienvenido a tu Directorio Principal</h1>
-        <a href="./v3/index.html">Cuevas demo</a>
-        <a href="./v1/index.html">Other demo #1</a>
-        <a href="./v2/index.html">Other demo #2</a>
+
+    <!-- Quitar contenedor header-utils, posicionar ul.sm y #lang-switcher directamente -->
+    <ul class="sm">
+        <li><a href="https://www.linkedin.com/in/alejandro-moya-c" target="_blank" rel="noopener noreferrer"><i
+                    class="fa fa-linkedin"></i></a></li>
+    </ul>
+    <div id="lang-switcher">
+        <button data-lang="es">Español</button> |
+        <button data-lang="en">English</button>
     </div>
+
+
+    <div class="contOut clearfix">
+        <div class="contIn">
+            <div class="section top clearfix">
+                <div class="logoCont">
+                    <img class="logo" src="https://secure.gravatar.com/avatar/placeholder?s=150&d=mp&r=g"
+                        alt="Foto de Alejandro">
+                </div>
+                <h1>Alejandro Ramiro Moya Cardona</h1>
+                <div class="moreInfo">
+                    <p>
+                        <span data-i18n="header.location">Cochabamba - Bolivia</span><br>
+                        <a href="https://www.linkedin.com/in/alejandro-moya-c" target="_blank" rel="noopener noreferrer"
+                            data-i18n="header.linkedin">LinkedIn</a>
+                    </p>
+                </div>
+                <p class="tagline">
+                    <span data-i18n="header.title">Desarrollador Backend Senior</span>
+                    <br>
+                    <span data-i18n="header.subtitle">Especialista en Cloud, Automatización e IA Generativa</span>
+                </p>
+            </div>
+            <div class="divider"></div>
+        </div>
+    </div>
+
+    <div class="contOut clearfix">
+        <div class="contIn">
+            <div class="section middle clearfix">
+                <div class="job static-section">
+                    <h2><span data-i18n="profile.title">Perfil Profesional</span></h2>
+                    <p>
+                    <div class="job-details-content" data-i18n="profile.content">
+                        Soy un Desarrollador Backend Senior con más de 7 años de experiencia, especializado en startups
+                        de alto crecimiento,
+                        entornos internacionales y proyectos tecnológicamente exigentes. He demostrado mi capacidad para
+                        construir y escalar sistemas backend robustos desde cero, llegando a gestionar plataformas con
+                        más
+                        de 10 millones de usuarios registrados. Soy experto en el diseño e implementación de
+                        arquitecturas
+                        cloud nativas (GCP), microservicios, despliegues CI/CD (Docker, GitHub Actions) y la
+                        integración de automatizaciones (Zapier, Make). Me considero un pionero en la aplicación
+                        práctica y personalización
+                        de IA Generativa (Stable Diffusion, entrenamiento LoRA, modelos de video), combinando estas
+                        técnicas con herramientas
+                        como Photoshop para crear contenido visual de alta calidad y consistencia, mejorando la
+                        presencia de marca y el engagement.
+                        Me caracterizo por mi rápida adaptabilidad, aprendizaje continuo y mi enfoque proactivo para
+                        integrar soluciones de IA en los procesos de desarrollo.
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </div>
+    </div>
+
+
+    <div class="contOut clearfix">
+        <div class="contIn">
+            <div class="section middle clearfix">
+                <h2 style="margin-bottom: 15px; font-size: 22px; border-bottom: 1px solid #eee; padding-bottom: 5px;"
+                    data-i18n="experience.title">
+                    Experiencia Laboral</h2>
+                <div class="job">
+                    <h2>
+                        <div class="title-icon-wrapper">
+                            <span data-i18n="experience.yana.title">Yana – México (Remoto)</span>
+                            <i class="fa fa-minus openBtn open"></i>
+                        </div>
+                        <span class="job-date">2019 – 2024</span>
+                    </h2>
+                    <p>
+                    <div class="job-details-content">
+                        <strong data-i18n="experience.yana.positionLabel">Posición:</strong> <span
+                            data-i18n="experience.yana.positionValue">Backend Developer & Miembro Fundador Equipo
+                            Técnico</span><br>
+                        <strong data-i18n="experience.yana.descriptionLabel">Logros y Responsabilidades:</strong>
+                        <ul>
+                            <li data-i18n="experience.yana.desc1">Como miembro fundador del equipo técnico (inicialmente
+                                2 backend devs), participé activamente en escalar la plataforma para soportar más de 10
+                                millones de usuarios.</li>
+                            <li data-i18n="experience.yana.desc2">Desarrollé y optimicé APIs RESTful (JSON) clave para
+                                la aplicación conversacional principal, asegurando el manejo eficiente de altos
+                                volúmenes de tráfico.</li>
+                            <li data-i18n="experience.yana.desc3">Participé en la migración estratégica de la
+                                infraestructura a GCP y en la implementación de Docker y CI/CD con GitHub Actions,
+                                contribuyendo a mejoras significativas en escalabilidad, tiempo de respuesta y
+                                seguridad.</li>
+                            <li data-i18n="experience.yana.desc4">Configuré y administré el sistema de envío masivo y
+                                segmentado de correos (+10k) con AWS SES.</li>
+                            <li data-i18n="experience.yana.desc5">Contribuí al diseño e implementación de una
+                                arquitectura de microservicios escalable automáticamente, permitiendo el desarrollo
+                                modular y despliegues independientes.</li>
+                            <li data-i18n="experience.yana.desc6">Trabajé bajo metodología Scrum, colaborando
+                                estrechamente con equipos de frontend, QA y producto.</li>
+                        </ul>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </div>
+    </div>
+
+    <div class="contOut clearfix">
+        <div class="contIn">
+            <div class="section middle clearfix">
+                <div class="job">
+                    <h2>
+                        <div class="title-icon-wrapper">
+                            <span data-i18n="experience.easyfx.title">EasyFX Trading – Remoto</span>
+                            <i class="fa fa-plus openBtn"></i>
+                        </div>
+                        <span class="job-date">May 2021 – Dic 2021</span>
+                    </h2>
+                    <p>
+                    <div class="job-details-content">
+                        <strong data-i18n="experience.easyfx.positionLabel">Posición:</strong> <span
+                            data-i18n="experience.easyfx.positionValue">Integración / conexión entre Plataformas y
+                            Automatizaciones</span><br>
+                        <strong data-i18n="experience.easyfx.descriptionLabel">Descripción:</strong> <span
+                            data-i18n="experience.easyfx.desc1">Configuré y automaticé flujos de datos críticos entre
+                            Chargebee, Integromat/Make, el backend y Discord. Implementé notificaciones, control de
+                            suscripciones y gestión de accesos premium, optimizando significativamente el proceso de
+                            onboarding de clientes.</span>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </div>
+    </div>
+
+    <div class="contOut clearfix">
+        <div class="contIn">
+            <div class="section middle clearfix">
+                <div class="job">
+                    <h2>
+                        <div class="title-icon-wrapper">
+                            <span data-i18n="experience.freelance.title">Consultor Chatbots & Automatización
+                                (Freelance)</span>
+                            <i class="fa fa-plus openBtn"></i>
+                        </div>
+                        <span class="job-date">2017 – 2021</span>
+                    </h2>
+                    <p>
+                    <div class="job-details-content">
+                        <strong data-i18n="experience.freelance.clientsLabel">Clientes:</strong> <span
+                            data-i18n="experience.freelance.clientsValue">Modefuel, Visual Encounter, Pernimo</span><br>
+                        <strong data-i18n="experience.freelance.descriptionLabel">Descripción:</strong> <span
+                            data-i18n="experience.freelance.desc1">Desarrollé e integré chatbots (ManyChat, Chatfuel)
+                            para tiendas Shopify y aplicaciones financieras. También creé automatizaciones para flujos
+                            de ventas, soporte y marketing digital utilizando herramientas como Zapier/Make.</span>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </div>
+    </div>
+
+    <div class="contOut clearfix">
+        <div class="contIn">
+            <div class="section middle clearfix">
+                <div class="job">
+                    <h2>
+                        <div class="title-icon-wrapper">
+                            <span data-i18n="experience.cemvi.title">CEMVI – Cochabamba, Bolivia</span>
+                            <i class="fa fa-plus openBtn"></i>
+                        </div>
+                        <span class="job-date">2013 – 2016</span>
+                    </h2>
+                    <p>
+                    <div class="job-details-content">
+                        <strong data-i18n="experience.cemvi.positionLabel">Posición:</strong> <span
+                            data-i18n="experience.cemvi.positionValue">Soporte Técnico IT</span><br>
+                        <strong data-i18n="experience.cemvi.descriptionLabel">Descripción:</strong> <span
+                            data-i18n="experience.cemvi.desc1">Realicé el mantenimiento de sistemas informáticos y
+                            proporcioné soporte técnico a usuarios en la planta de producción.</span>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </div>
+    </div>
+
+
+    <div class="contOut clearfix">
+        <div class="contIn">
+            <div class="section middle clearfix skills-container">
+                <div class="skills code odd">
+                    <h3><span data-i18n="skills.backend.title">Backend & Cloud</span>
+                        <i class="fa fa-server"></i>
+                    </h3>
+                    <ul>
+                        <li class="prim" data-i18n="skills.backend.catLanguages">Lenguajes</li>
+                        <li>PHP</li>
+                        <li>Python</li>
+                        <li>SQL</li>
+                        <li class="prim" data-i18n="skills.backend.catFrameworks">Frameworks</li>
+                        <li>CodeIgniter</li>
+                        <li>Flask</li>
+                        <li>FastAPI</li>
+                        <li class="prim" data-i18n="skills.backend.catArchitecture">Arquitectura</li>
+                        <li>APIs RESTful</li>
+                        <li>Microservicios</li>
+                        <li>Diseño Modular</li>
+                        <li>Seguridad Backend</li>
+                        <li class="prim" data-i18n="skills.backend.catCloud">Cloud & DevOps</li>
+                        <li>GCP</li>
+                        <li>Docker</li>
+                        <li>CI/CD (GitHub Actions)</li>
+                        <li>AWS (SES)</li>
+                        <li class="prim" data-i18n="skills.backend.catDatabases">Bases de Datos</li>
+                        <li>MySQL</li>
+                    </ul>
+                </div>
+                <div class="skills software">
+                    <h3><span data-i18n="skills.ai.title">IA, Automatización & Frontend</span>
+                        <i class="fa fa-cogs"></i>
+                    </h3>
+                    <ul>
+                        <li class="prim" data-i18n="skills.ai.catGenAI">IA Generativa</li>
+                        <li data-i18n="skills.ai.itemPromptEng">Prompt Engineering</li>
+                        <li data-i18n="skills.ai.itemSD">Stable Diffusion (SD 1.5, SDXL, Pony, Flux)</li>
+                        <li data-i18n="skills.ai.itemLora">Entrenamiento LoRA (Kohya_ss, One Trainer)</li>
+                        <li data-i18n="skills.ai.itemFaceSwap">Face Swapping (Imagen/Video)</li>
+                        <li data-i18n="skills.ai.itemVideoGen">Generación de Video (Pixverse, Kling, Runway, Veo 2, Wan
+                            2.1)</li>
+                        <li>Langchain</li>
+                        <li data-i18n="skills.ai.itemTools">Herramientas: ComfyUI, Forge UI, A1111, Google AI Studio
+                        </li>
+                        <li class="prim" data-i18n="skills.ai.catAutomation">Automatización</li>
+                        <li>Zapier</li>
+                        <li>Make (Integromat)</li>
+                        <li>Scripting (Python)</li>
+                        <li class="prim" data-i18n="skills.ai.catFrontend">Frontend & Otros</li>
+                        <li>JavaScript</li>
+                        <li>Photoshop</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li class="prim" data-i18n="skills.ai.catMethodologies">Metodologías</li>
+                        <li>Scrum</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </div>
+    </div>
+
+    <div class="contOut clearfix">
+        <div class="contIn">
+            <div class="contracts clearfix">
+                <h3><span data-i18n="projects.title">Proyectos Personales (IA Generativa)</span></h3>
+                <div class="contract">
+                    <h4 data-i18n="projects.imageGen.title">Generación Avanzada de Imágenes y Consistencia</h4>
+                    <p class="desc" style="padding-bottom: 35px;" data-i18n="projects.imageGen.desc">
+                        He investigado y aplicado modelos como Stable Diffusion (SDXL, Flux) utilizando interfaces como
+                        ComfyUI y Forge UI. Desarrollé técnicas de prompt engineering avanzado, entrené modelos LoRA
+                        personalizados (con Kohya/OneTrainer) y usé scripts de automatización para generar imágenes
+                        fotorrealistas de forma masiva, logrando consistencia de personajes y aplicando face swapping
+                        avanzado para mejorar el engagement en redes sociales.
+                    </p>
+                    <span class="date" data-i18n="projects.imageGen.tech">Tech: Python, Stable Diffusion, LoRA, ComfyUI,
+                        Forge UI</span>
+                </div>
+                <div class="contract">
+                    <h4 data-i18n="projects.videoGen.title">Creación de Video con IA</h4>
+                    <p class="desc" style="padding-bottom: 35px;" data-i18n="projects.videoGen.desc">
+                        Actualmente experimento y diseño prompts para herramientas de generación de video mediante IA
+                        (Pixverse, Kling AI, Runway, Google Veo 2), y he explorado generación local (Wan 2.1),
+                        enfocándome en obtener alta calidad y coherencia narrativa/visual en las secuencias generadas.
+                    </p>
+                    <span class="date" data-i18n="projects.videoGen.tech">Tech: Pixverse, Kling, Runway, Veo 2 APIs, Wan
+                        2.1</span>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </div>
+    </div>
+
+    <div class="contOut clearfix">
+        <div class="contIn">
+            <div class="section middle clearfix">
+                <div class="job">
+                    <h2>
+                        <div class="title-icon-wrapper">
+                            <span data-i18n="education.title">Educación</span>
+                            <i class="fa fa-plus openBtn"></i>
+                        </div>
+                        <!-- No date span needed here -->
+                    </h2>
+                    <p>
+                    <div class="job-details-content">
+                        <strong data-i18n="education.degree">Ingeniería de Sistemas</strong><br>
+                        <span data-i18n="education.university">Universidad Mayor de San Simón – Cochabamba,
+                            Bolivia</span>
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </div>
+    </div>
+
+    <div class="contOut clearfix">
+        <div class="contIn">
+            <div class="section middle clearfix">
+                <div class="job">
+                    <h2>
+                        <div class="title-icon-wrapper">
+                            <span data-i18n="languages.title">Idiomas</span>
+                            <i class="fa fa-plus openBtn"></i>
+                        </div>
+                        <!-- No date span needed here -->
+                    </h2>
+                    <p>
+                    <div class="job-details-content">
+                        <strong data-i18n="languages.spanishLabel">Español:</strong> <span
+                            data-i18n="languages.spanishValue">Nativo</span><br>
+                        <strong data-i18n="languages.englishLabel">Inglés:</strong> <span
+                            data-i18n="languages.englishValue">C2 (Competencia profesional completa)</span>
+                    </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- i18next Initialization and Update Logic ---
+
+        const updateContent = () => {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach((el) => {
+                const key = el.getAttribute('data-i18n');
+                el.innerHTML = i18next.t(key);
+            });
+            const currentLang = i18next.language;
+            document.querySelectorAll('#lang-switcher button').forEach(button => {
+                if (button.getAttribute('data-lang') === currentLang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        };
+
+        const bindLanguageSwitcher = () => {
+            const buttons = document.querySelectorAll('#lang-switcher button');
+            buttons.forEach((button) => {
+                button.addEventListener('click', (event) => {
+                    const lang = event.target.getAttribute('data-lang');
+                    if (lang && lang !== i18next.language) {
+                        i18next.changeLanguage(lang); // Let the event listener handle update
+                    }
+                });
+            });
+        };
+
+        i18next
+            .use(i18nextHttpBackend)
+            .init({
+                lng: 'es',
+                fallbackLng: 'es',
+                debug: false, // Set to true for debugging
+                backend: {
+                    loadPath: 'locales/{{lng}}/translation.json'
+                },
+                interpolation: {
+                    escapeValue: false
+                }
+            }, (err, t) => {
+                if (err) return console.error('Error initializing i18next:', err);
+                console.log('i18next initialized.');
+                updateContent();
+                bindLanguageSwitcher();
+            });
+
+        i18next.on('languageChanged', (lng) => {
+            console.log('Language changed to:', lng);
+            updateContent();
+            document.documentElement.lang = lng;
+        });
+
+
+        // --- Accordion Logic ---
+        $(document).ready(function () {
+            $('.contOut').animate({
+                'opacity': '1'
+            }, 1200);
+
+            $('.job').not('.static-section').each(function () {
+                const $job = $(this);
+                const $detailsContent = $job.find('.job-details-content');
+                const $button = $job.find('.openBtn');
+
+                if ($button.hasClass('open')) {
+                    $detailsContent.show().css('opacity', '1');
+                } else {
+                    $detailsContent.hide().css('opacity', '0');
+                }
+            });
+
+            $('.job.static-section .job-details-content').css({ 'display': 'block', 'opacity': '1' });
+
+
+            $('.job:not(.static-section) h2').on('click', function () {
+                const $h2 = $(this);
+                const $job = $h2.closest('.job');
+                const $button = $h2.find('.openBtn'); // Find the button within the clicked H2
+                const $detailsContent = $job.find('.job-details-content');
+
+                if ($button.hasClass('open')) {
+                    $button.removeClass('open fa-minus').addClass('fa-plus');
+                    $detailsContent.animate({
+                        'opacity': '0'
+                    }, 200).slideUp(300);
+                } else {
+                    $button.addClass('open fa-minus').removeClass('fa-plus');
+                    $detailsContent.slideDown(300).animate({
+                        'opacity': '1'
+                    }, 400);
+                }
+            });
+        });
+    </script>
+
 </body>
+
 </html>
