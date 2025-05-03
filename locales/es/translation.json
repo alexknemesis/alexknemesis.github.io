@@ -3,7 +3,8 @@
         "location": "Cochabamba - Bolivia",
         "linkedin": "LinkedIn",
         "title": "Desarrollador Backend Senior",
-        "subtitle": "Especialista en Cloud, Automatización e IA Generativa"
+        "subtitle": "Especialista en Cloud, Automatización e IA Generativa",
+        "profilePicAlt": "Foto de Alejandro"
     },
     "profile": {
         "title": "Perfil Profesional",
@@ -24,7 +25,7 @@
             "desc6": "Trabajé bajo metodología Scrum, colaborando estrechamente con equipos de frontend, QA y producto."
         },
         "easyfx": {
-            "title": "EasyFX Trading – Remoto",
+            "title": "EasyFX Trading – Remoto (Tailandia / USA)",
             "positionLabel": "Posición:",
             "positionValue": "Integración / conexión entre Plataformas y Automatizaciones",
             "descriptionLabel": "Descripción:",
@@ -33,7 +34,7 @@
         "freelance": {
             "title": "Consultor Chatbots & Automatización (Freelance)",
             "clientsLabel": "Clientes:",
-            "clientsValue": "Modefuel, Visual Encounter, Pernimo",
+            "clientsValue": "Modefuel (Miami, USA), Visual Encounter (Texas, USA), Pernimo (Tallinn, Estonia)",
             "descriptionLabel": "Descripción:",
             "desc1": "Desarrollé e integré chatbots (ManyChat, Chatfuel) para tiendas Shopify y aplicaciones financieras. También creé automatizaciones para flujos de ventas, soporte y marketing digital utilizando herramientas como Zapier/Make."
         },

@@ -116,40 +116,54 @@
             padding-right: 30px;
         }
 
+        /* Header Section Refactored with Flexbox */
         .section.top {
             padding-top: 30px;
             padding-bottom: 15px;
-        }
-
-        .section.top:hover img.logo {
-            -webkit-filter: grayscale(0%);
-            filter: grayscale(0%);
+            display: flex;
+            /* Use Flexbox */
+            align-items: flex-start;
+            /* Align items at the top */
+            gap: 30px;
+            /* Space between flex items */
+            flex-wrap: wrap;
+            /* Allow wrapping on smaller screens */
         }
 
         .logoCont {
-            float: left;
-            width: 15%;
-            min-width: 70px;
-            padding-right: 20px;
+            /* float: left; Remove float */
+            width: 150px;
+            /* Fixed width for the larger image */
+            flex-shrink: 0;
+            /* Prevent shrinking */
+            /* padding-right: 20px; Remove padding, use gap */
             box-sizing: border-box;
         }
 
         img.logo {
             width: 100%;
-            max-width: 100px;
-            min-width: 50px;
+            /* Fill the container */
+            max-width: 150px;
+            /* --- NEW SIZE --- */
+            min-width: 75px;
+            /* --- NEW SIZE --- */
             height: auto;
-            -webkit-filter: grayscale(100%);
-            filter: grayscale(100%);
             border-radius: 3px;
             border: solid 1px #ccc;
-            transition: filter 0.3s ease;
+        }
+
+        /* Wrapper for Name and Tagline */
+        .name-tagline-wrapper {
+            flex-grow: 1;
+            /* Take remaining space */
+            /* No float needed */
         }
 
         h1 {
-            width: calc(85% - 150px);
-            float: left;
-            display: inline-block;
+            /* width: calc(85% - 150px); Remove width calculation */
+            /* float: left; Remove float */
+            display: block;
+            /* Ensure it takes block space */
             font-family: 'Playfair Display', serif;
             margin: 0 0 5px 0;
             font-size: 36px;
@@ -158,9 +172,11 @@
         }
 
         p.tagline {
-            float: left;
-            clear: left;
-            width: calc(85% - 150px);
+            /* float: left; Remove float */
+            /* clear: left; Remove clear */
+            /* width: calc(85% - 150px); Remove width calculation */
+            display: block;
+            /* Ensure it takes block space */
             margin: 0 0 10px 0;
             font-size: 16px;
             line-height: 1.4;
@@ -174,8 +190,11 @@
         }
 
         .moreInfo {
-            float: right;
+            /* float: right; Remove float */
             width: 150px;
+            /* Keep fixed width */
+            flex-shrink: 0;
+            /* Prevent shrinking */
             text-align: right;
         }
 
@@ -213,17 +232,12 @@
             transition: all 200ms ease-in;
             position: relative;
             display: flex;
-            /* Usar flex para alinear elementos internos */
             justify-content: space-between;
-            /* Pone el span de fecha al final */
             align-items: center;
-            /* Centra verticalmente */
         }
 
-        /* Contenedor para el título y el botón +/- */
         .job h2 .title-icon-wrapper {
             display: inline-flex;
-            /* Para que estén juntos */
             align-items: center;
         }
 
@@ -235,8 +249,6 @@
         }
 
         .job h2 span.job-date {
-            /* Clase específica para la fecha */
-            /* float: right; No necesario con flex */
             display: inline-block;
             font-size: 14px;
             background: #333;
@@ -248,7 +260,6 @@
             margin-left: 10px;
             font-weight: normal;
             white-space: nowrap;
-            /* Evita que la fecha se rompa */
         }
 
         .job h2 i.fa.openBtn {
@@ -547,7 +558,6 @@
             position: absolute;
             top: 10px;
             left: 20px;
-            /* <-- Mantenido a la izquierda */
             margin: 0;
             padding: 0;
             z-index: 10;
@@ -611,25 +621,39 @@
             .skills {
                 width: 100%;
             }
-        }
 
-        @media (max-width: 850px) {
+            /* Ajustar header flex en pantallas medianas */
+            .section.top {
+                gap: 15px;
+                /* Reducir espacio */
+            }
+
+            .name-tagline-wrapper {
+                flex-basis: calc(100% - 150px - 150px - 30px);
+                /* Calcula espacio restante */
+            }
+
             h1 {
                 font-size: 32px;
             }
 
+        }
+
+        @media (max-width: 850px) {
+
+            /* h1 { font-size: 32px; } */
+            /* Controlado arriba */
             p.tagline {
                 font-size: 15px;
             }
 
             .logoCont {
-                width: 25%;
+                width: 120px;
             }
 
-            h1,
-            p.tagline {
-                width: calc(75% - 150px);
-                margin-left: 0;
+            /* Ajustar si 150 es mucho */
+            .name-tagline-wrapper {
+                flex-basis: calc(100% - 120px - 150px - 30px);
             }
         }
 
@@ -646,19 +670,14 @@
                 margin-right: 0;
             }
 
-            /* Ajustar posicionamiento de fecha en H2 */
             .job h2 {
                 flex-wrap: wrap;
-                /* Permitir que fecha baje */
             }
 
             .job h2 span.job-date {
                 order: 3;
-                /* Mover fecha al final */
                 width: 100%;
-                /* Que ocupe ancho completo */
                 text-align: left;
-                /* Alinear a la izquierda */
                 margin-top: 5px;
                 margin-left: 0;
                 background: none;
@@ -677,15 +696,14 @@
                 width: 120px;
             }
 
-            h1,
-            p.tagline {
-                width: calc(100% - 140px - 25%);
+            .logoCont {
+                width: 100px;
             }
 
-            .job h2 span.job-date {
-                /* Ya se maneja en el breakpoint anterior */
-                /* No necesita cambios aquí */
+            .name-tagline-wrapper {
+                flex-basis: calc(100% - 100px - 120px - 30px);
             }
+
 
             .job h2 i.fa.openBtn {
                 margin-left: 5px;
@@ -698,6 +716,38 @@
             .job .job-details-content {
                 margin-left: 0;
             }
+
+            /* Ajustar header para mejor distribución */
+            .section.top {
+                justify-content: center;
+                /* Centrar en pantallas pequeñas */
+            }
+
+            .name-tagline-wrapper {
+                order: 1;
+                /* Poner nombre primero */
+                flex-basis: 100%;
+                /* Ancho completo */
+                text-align: center;
+            }
+
+            .logoCont {
+                order: 2;
+            }
+
+            .moreInfo {
+                order: 3;
+                text-align: center;
+                width: 100%;
+                /* Ancho completo */
+                margin-top: 10px;
+            }
+
+            h1,
+            p.tagline {
+                width: 100%;
+            }
+
         }
 
         @media (max-width: 570px) {
@@ -740,24 +790,37 @@
                 padding-right: 15px;
             }
 
+            /* Reajustar logo y texto */
             .logoCont {
-                width: 30%;
-                padding-right: 10px;
+                width: 100px;
+                /* Fijo */
+                margin: 0 auto 10px auto;
+                /* Centrado */
+                float: none;
+                /* Quitar float */
             }
 
-            h1,
-            p.tagline {
-                width: 70%;
+            .name-tagline-wrapper,
+            .moreInfo {
+                flex-basis: 100%;
+                text-align: center;
             }
 
             h1 {
                 font-size: 24px;
+                width: 100%;
             }
+
+            p.tagline {
+                width: 100%;
+            }
+
 
             .moreInfo {
                 width: 100%;
                 float: none;
-                text-align: left;
+                text-align: center;
+                /* Centrar contacto */
                 margin-top: 10px;
                 font-size: 12px;
             }
@@ -786,10 +849,6 @@
                 top: 10px;
             }
 
-            #header-utils {
-                display: none;
-            }
-
         }
 
         .job.static-section p {
@@ -811,7 +870,6 @@
 
 <body>
 
-    <!-- Quitar contenedor header-utils, posicionar ul.sm y #lang-switcher directamente -->
     <ul class="sm">
         <li><a href="https://www.linkedin.com/in/alejandro-moya-c" target="_blank" rel="noopener noreferrer"><i
                     class="fa fa-linkedin"></i></a></li>
@@ -826,10 +884,19 @@
         <div class="contIn">
             <div class="section top clearfix">
                 <div class="logoCont">
-                    <img class="logo" src="https://secure.gravatar.com/avatar/placeholder?s=150&d=mp&r=g"
+                    <img class="logo" src="imgs/profile_picture.png" data-i18n="[alt]header.profilePicAlt"
                         alt="Foto de Alejandro">
                 </div>
-                <h1>Alejandro Ramiro Moya Cardona</h1>
+                <!-- Wrapper para Nombre y Tagline -->
+                <div class="name-tagline-wrapper">
+                    <h1>Alejandro Ramiro Moya Cardona</h1>
+                    <p class="tagline">
+                        <span data-i18n="header.title">Desarrollador Backend Senior</span>
+                        <br>
+                        <span data-i18n="header.subtitle">Especialista en Cloud, Automatización e IA Generativa</span>
+                    </p>
+                </div>
+                <!-- Fin Wrapper -->
                 <div class="moreInfo">
                     <p>
                         <span data-i18n="header.location">Cochabamba - Bolivia</span><br>
@@ -837,11 +904,6 @@
                             data-i18n="header.linkedin">LinkedIn</a>
                     </p>
                 </div>
-                <p class="tagline">
-                    <span data-i18n="header.title">Desarrollador Backend Senior</span>
-                    <br>
-                    <span data-i18n="header.subtitle">Especialista en Cloud, Automatización e IA Generativa</span>
-                </p>
             </div>
             <div class="divider"></div>
         </div>
@@ -932,7 +994,7 @@
                 <div class="job">
                     <h2>
                         <div class="title-icon-wrapper">
-                            <span data-i18n="experience.easyfx.title">EasyFX Trading – Remoto</span>
+                            <span data-i18n="experience.easyfx.title">EasyFX Trading – Remoto (Tailandia / USA)</span>
                             <i class="fa fa-plus openBtn"></i>
                         </div>
                         <span class="job-date">May 2021 – Dic 2021</span>
@@ -970,7 +1032,8 @@
                     <p>
                     <div class="job-details-content">
                         <strong data-i18n="experience.freelance.clientsLabel">Clientes:</strong> <span
-                            data-i18n="experience.freelance.clientsValue">Modefuel, Visual Encounter, Pernimo</span><br>
+                            data-i18n="experience.freelance.clientsValue">Modefuel (Miami, USA), Visual Encounter
+                            (Texas, USA), Pernimo (Tallin, Estonia)</span><br>
                         <strong data-i18n="experience.freelance.descriptionLabel">Descripción:</strong> <span
                             data-i18n="experience.freelance.desc1">Desarrollé e integré chatbots (ManyChat, Chatfuel)
                             para tiendas Shopify y aplicaciones financieras. También creé automatizaciones para flujos
@@ -1113,7 +1176,6 @@
                             <span data-i18n="education.title">Educación</span>
                             <i class="fa fa-plus openBtn"></i>
                         </div>
-                        <!-- No date span needed here -->
                     </h2>
                     <p>
                     <div class="job-details-content">
@@ -1137,7 +1199,6 @@
                             <span data-i18n="languages.title">Idiomas</span>
                             <i class="fa fa-plus openBtn"></i>
                         </div>
-                        <!-- No date span needed here -->
                     </h2>
                     <p>
                     <div class="job-details-content">
@@ -1160,7 +1221,16 @@
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach((el) => {
                 const key = el.getAttribute('data-i18n');
-                el.innerHTML = i18next.t(key);
+                if (key.startsWith('[')) {
+                    const parts = key.match(/^\[(.*?)\](.*)$/);
+                    if (parts && parts.length === 3) {
+                        const attrName = parts[1];
+                        const attrKey = parts[2];
+                        el.setAttribute(attrName, i18next.t(attrKey));
+                    }
+                } else {
+                    el.innerHTML = i18next.t(key);
+                }
             });
             const currentLang = i18next.language;
             document.querySelectorAll('#lang-switcher button').forEach(button => {
@@ -1170,6 +1240,17 @@
                     button.classList.remove('active');
                 }
             });
+            $('.job').not('.static-section').each(function () {
+                const $job = $(this);
+                const $detailsContent = $job.find('.job-details-content');
+                const $button = $job.find('.openBtn');
+                if (!$button.hasClass('open')) {
+                    $detailsContent.hide().css('opacity', '0');
+                } else {
+                    $detailsContent.show().css('opacity', '1');
+                }
+            });
+
         };
 
         const bindLanguageSwitcher = () => {
@@ -1178,7 +1259,7 @@
                 button.addEventListener('click', (event) => {
                     const lang = event.target.getAttribute('data-lang');
                     if (lang && lang !== i18next.language) {
-                        i18next.changeLanguage(lang); // Let the event listener handle update
+                        i18next.changeLanguage(lang);
                     }
                 });
             });
@@ -1189,7 +1270,7 @@
             .init({
                 lng: 'es',
                 fallbackLng: 'es',
-                debug: false, // Set to true for debugging
+                debug: false,
                 backend: {
                     loadPath: 'locales/{{lng}}/translation.json'
                 },
@@ -1212,29 +1293,18 @@
 
         // --- Accordion Logic ---
         $(document).ready(function () {
-            $('.contOut').animate({
-                'opacity': '1'
-            }, 1200);
-
-            $('.job').not('.static-section').each(function () {
-                const $job = $(this);
-                const $detailsContent = $job.find('.job-details-content');
-                const $button = $job.find('.openBtn');
-
-                if ($button.hasClass('open')) {
-                    $detailsContent.show().css('opacity', '1');
-                } else {
-                    $detailsContent.hide().css('opacity', '0');
-                }
-            });
+            setTimeout(function () {
+                $('.contOut').animate({
+                    'opacity': '1'
+                }, 1200);
+            }, 100);
 
             $('.job.static-section .job-details-content').css({ 'display': 'block', 'opacity': '1' });
-
 
             $('.job:not(.static-section) h2').on('click', function () {
                 const $h2 = $(this);
                 const $job = $h2.closest('.job');
-                const $button = $h2.find('.openBtn'); // Find the button within the clicked H2
+                const $button = $h2.find('.openBtn');
                 const $detailsContent = $job.find('.job-details-content');
 
                 if ($button.hasClass('open')) {
