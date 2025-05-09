@@ -622,15 +622,12 @@
                 width: 100%;
             }
 
-            /* Ajustar header flex en pantallas medianas */
             .section.top {
                 gap: 15px;
-                /* Reducir espacio */
             }
 
             .name-tagline-wrapper {
                 flex-basis: calc(100% - 150px - 150px - 30px);
-                /* Calcula espacio restante */
             }
 
             h1 {
@@ -640,9 +637,6 @@
         }
 
         @media (max-width: 850px) {
-
-            /* h1 { font-size: 32px; } */
-            /* Controlado arriba */
             p.tagline {
                 font-size: 15px;
             }
@@ -651,7 +645,6 @@
                 width: 120px;
             }
 
-            /* Ajustar si 150 es mucho */
             .name-tagline-wrapper {
                 flex-basis: calc(100% - 120px - 150px - 30px);
             }
@@ -717,17 +710,13 @@
                 margin-left: 0;
             }
 
-            /* Ajustar header para mejor distribución */
             .section.top {
                 justify-content: center;
-                /* Centrar en pantallas pequeñas */
             }
 
             .name-tagline-wrapper {
                 order: 1;
-                /* Poner nombre primero */
                 flex-basis: 100%;
-                /* Ancho completo */
                 text-align: center;
             }
 
@@ -739,7 +728,6 @@
                 order: 3;
                 text-align: center;
                 width: 100%;
-                /* Ancho completo */
                 margin-top: 10px;
             }
 
@@ -790,14 +778,10 @@
                 padding-right: 15px;
             }
 
-            /* Reajustar logo y texto */
             .logoCont {
                 width: 100px;
-                /* Fijo */
                 margin: 0 auto 10px auto;
-                /* Centrado */
                 float: none;
-                /* Quitar float */
             }
 
             .name-tagline-wrapper,
@@ -820,7 +804,6 @@
                 width: 100%;
                 float: none;
                 text-align: center;
-                /* Centrar contacto */
                 margin-top: 10px;
                 font-size: 12px;
             }
@@ -887,7 +870,6 @@
                     <img class="logo" src="imgs/profile_picture.png" data-i18n="[alt]header.profilePicAlt"
                         alt="Foto de Alejandro">
                 </div>
-                <!-- Wrapper para Nombre y Tagline -->
                 <div class="name-tagline-wrapper">
                     <h1>Alejandro Ramiro Moya Cardona</h1>
                     <p class="tagline">
@@ -896,7 +878,6 @@
                         <span data-i18n="header.subtitle">Especialista en Cloud, Automatización e IA Generativa</span>
                     </p>
                 </div>
-                <!-- Fin Wrapper -->
                 <div class="moreInfo">
                     <p>
                         <span data-i18n="header.location">Cochabamba - Bolivia</span><br>
@@ -926,7 +907,9 @@
                         cloud nativas (GCP), microservicios, despliegues CI/CD (Docker, GitHub Actions) y la
                         integración de automatizaciones (Zapier, Make). Me considero un pionero en la aplicación
                         práctica y personalización
-                        de IA Generativa (Stable Diffusion, entrenamiento LoRA, modelos de video), combinando estas
+                        de IA Generativa (Stable Diffusion, entrenamiento LoRA, modelos de video), la <span
+                            data-i18n="profile.aiAgents">construcción de AI agents y el trabajo con LLMs
+                            (Langchain)</span>, combinando estas
                         técnicas con herramientas
                         como Photoshop para crear contenido visual de alta calidad y consistencia, mejorando la
                         presencia de marca y el engagement.
@@ -958,13 +941,15 @@
                     <p>
                     <div class="job-details-content">
                         <strong data-i18n="experience.yana.positionLabel">Posición:</strong> <span
-                            data-i18n="experience.yana.positionValue">Senior Lead Backend Developer & Miembro Fundador Equipo
+                            data-i18n="experience.yana.positionValue">Backend Developer & Miembro Fundador Equipo
                             Técnico</span><br>
                         <strong data-i18n="experience.yana.descriptionLabel">Logros y Responsabilidades:</strong>
                         <ul>
                             <li data-i18n="experience.yana.desc1">Como miembro fundador del equipo técnico (inicialmente
                                 2 backend devs), participé activamente en escalar la plataforma para soportar más de 10
-                                millones de usuarios.</li>
+                                millones de usuarios, incluyendo la creación de <span
+                                    data-i18n="experience.yana.aiAgents">AI Agents utilizando LLMs</span> y tecnologías
+                                de procesamiento de lenguaje natural (NLP).</li>
                             <li data-i18n="experience.yana.desc2">Desarrollé y optimicé APIs RESTful (JSON) clave para
                                 la aplicación conversacional principal, asegurando el manejo eficiente de altos
                                 volúmenes de tráfico.</li>
@@ -1032,7 +1017,7 @@
                     <p>
                     <div class="job-details-content">
                         <strong data-i18n="experience.freelance.clientsLabel">Clientes:</strong> <span
-                            data-i18n="experience.freelance.clientsValue">Publiaciertos (Bolivia), Modefuel (Miami, USA), Visual Encounter
+                            data-i18n="experience.freelance.clientsValue">Modefuel (Miami, USA), Visual Encounter
                             (Texas, USA), Pernimo (Tallin, Estonia)</span><br>
                         <strong data-i18n="experience.freelance.descriptionLabel">Descripción:</strong> <span
                             data-i18n="experience.freelance.desc1">Desarrollé e integré chatbots (ManyChat, Chatfuel)
@@ -1108,13 +1093,15 @@
                         <i class="fa fa-cogs"></i>
                     </h3>
                     <ul>
-                        <li class="prim" data-i18n="skills.ai.catGenAI">IA Generativa</li>
+                        <li class="prim" data-i18n="skills.ai.catGenAI">IA Generativa & LLMs</li>
                         <li data-i18n="skills.ai.itemPromptEng">Prompt Engineering</li>
                         <li data-i18n="skills.ai.itemSD">Stable Diffusion (SD 1.5, SDXL, Pony, Flux)</li>
                         <li data-i18n="skills.ai.itemLora">Entrenamiento LoRA (Kohya_ss, One Trainer)</li>
                         <li data-i18n="skills.ai.itemFaceSwap">Face Swapping (Imagen/Video)</li>
                         <li data-i18n="skills.ai.itemVideoGen">Generación de Video (Pixverse, Kling, Runway, Veo 2, Wan
                             2.1)</li>
+                        <li data-i18n="skills.ai.itemAIAgents">Desarrollo de AI Agents</li>
+                        <li data-i18n="skills.ai.itemLLMs">LLMs (Large Language Models)</li>
                         <li>Langchain</li>
                         <li data-i18n="skills.ai.itemTools">Herramientas: ComfyUI, Forge UI, A1111, Google AI Studio
                         </li>
@@ -1141,16 +1128,18 @@
             <div class="contracts clearfix">
                 <h3><span data-i18n="projects.title">Proyectos Personales (IA Generativa)</span></h3>
                 <div class="contract">
-                    <h4 data-i18n="projects.imageGen.title">Generación Avanzada de Imágenes y Consistencia</h4>
+                    <h4 data-i18n="projects.imageGen.title">Generación Avanzada de Imágenes, Consistencia y AI Agents
+                    </h4>
                     <p class="desc" style="padding-bottom: 35px;" data-i18n="projects.imageGen.desc">
                         He investigado y aplicado modelos como Stable Diffusion (SDXL, Flux) utilizando interfaces como
                         ComfyUI y Forge UI. Desarrollé técnicas de prompt engineering avanzado, entrené modelos LoRA
                         personalizados (con Kohya/OneTrainer) y usé scripts de automatización para generar imágenes
                         fotorrealistas de forma masiva, logrando consistencia de personajes y aplicando face swapping
-                        avanzado para mejorar el engagement en redes sociales.
+                        avanzado para mejorar el engagement en redes sociales. También he explorado la creación de AI
+                        Agents con LLMs (Langchain).
                     </p>
-                    <span class="date" data-i18n="projects.imageGen.tech">Tech: Python, Stable Diffusion, LoRA, ComfyUI,
-                        Forge UI</span>
+                    <span class="date" data-i18n="projects.imageGen.tech">Tech: Python, Stable Diffusion, LoRA,
+                        Langchain, ComfyUI, Forge UI</span>
                 </div>
                 <div class="contract">
                     <h4 data-i18n="projects.videoGen.title">Creación de Video con IA</h4>

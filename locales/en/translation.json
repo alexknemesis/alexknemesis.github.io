@@ -8,16 +8,18 @@
     },
     "profile": {
         "title": "Professional Profile",
-        "content": "I am a Senior Backend Developer with over 7 years of experience, specializing in high-growth startups, international environments, and technologically demanding projects. I have demonstrated my ability to build and scale robust backend systems from scratch, managing platforms with over 10 million registered users. I am an expert in designing and implementing native cloud architectures (GCP), microservices, CI/CD deployments (Docker, GitHub Actions), and integrating automations (Zapier, Make). I consider myself a pioneer in the practical application and customization of Generative AI (Stable Diffusion, LoRA training, video models), combining these techniques with tools like Photoshop to create high-quality, consistent visual content, enhancing brand presence and engagement. I am characterized by my rapid adaptability, continuous learning, and proactive approach to integrating AI solutions into development processes."
+        "content": "I am a Senior Backend Developer with over 7 years of experience, specializing in high-growth startups, international environments, and technologically demanding projects. I have demonstrated my ability to build and scale robust backend systems from scratch, managing platforms with over 10 million registered users. I am an expert in designing and implementing native cloud architectures (GCP), microservices, CI/CD deployments (Docker, GitHub Actions), and integrating automations (Zapier, Make). I consider myself a pioneer in the practical application and customization of Generative AI (Stable Diffusion, LoRA training, video models), the <span data-i18n='profile.aiAgents'>construction of AI agents and working with LLMs (Langchain)</span>, combining these techniques with tools like Photoshop to create high-quality, consistent visual content, enhancing brand presence and engagement. I am characterized by my rapid adaptability, continuous learning, and proactive approach to integrating AI solutions into development processes.",
+        "aiAgents": "construction of AI agents and working with LLMs (Langchain)"
     },
     "experience": {
         "title": "Work Experience",
         "yana": {
             "title": "Yana – Mexico (Remote)",
             "positionLabel": "Position:",
-            "positionValue": "Senior Lead Backend Developer & Founding Technical Team Member",
+            "positionValue": "Backend Developer & Founding Technical Team Member",
             "descriptionLabel": "Achievements and Responsibilities:",
-            "desc1": "As a founding technical team member (initially 2 backend devs), I actively participated in scaling the platform to support over 10 million users.",
+            "desc1": "As a founding technical team member (initially 2 backend devs), I actively participated in scaling the platform to support over 10 million users, including the creation of <span data-i18n='experience.yana.aiAgents'>AI Agents using LLMs</span> and natural language processing (NLP) technologies.",
+            "aiAgents": "AI Agents using LLMs",
             "desc2": "Developed and optimized key RESTful APIs (JSON) for the main conversational application, ensuring efficient handling of high traffic volumes.",
             "desc3": "Participated in the strategic migration of the infrastructure to GCP and in the implementation of Docker and CI/CD with GitHub Actions, contributing to significant improvements in scalability, response time, and security.",
             "desc4": "Configured and managed the mass segmented email sending system (+10k) using AWS SES.",
@@ -34,7 +36,7 @@
         "freelance": {
             "title": "Chatbot & Automation Consultant (Freelance)",
             "clientsLabel": "Clients:",
-            "clientsValue": "Publiaciertos (Bolivia), Modefuel (Miami, USA), Visual Encounter (Texas, USA), Pernimo (Tallin, Estonia)",
+            "clientsValue": "Modefuel (Miami, USA), Visual Encounter (Texas, USA), Pernimo (Tallinn, Estonia)",
             "descriptionLabel": "Description:",
             "desc1": "Developed and integrated chatbots (ManyChat, Chatfuel) for Shopify stores and financial applications. Also created automations for sales, support, and digital marketing workflows using tools like Zapier/Make."
         },
@@ -57,12 +59,14 @@
         },
         "ai": {
             "title": "AI, Automation & Frontend",
-            "catGenAI": "Generative AI",
+            "catGenAI": "Generative AI & LLMs",
             "itemPromptEng": "Prompt Engineering",
             "itemSD": "Stable Diffusion (SD 1.5, SDXL, Pony, Flux)",
             "itemLora": "LoRA Training (Kohya_ss, One Trainer)",
             "itemFaceSwap": "Face Swapping (Image/Video)",
             "itemVideoGen": "Video Generation (Pixverse, Kling, Runway, Veo 2, Wan 2.1)",
+            "itemAIAgents": "AI Agent Development",
+            "itemLLMs": "LLMs (Large Language Models)",
             "itemTools": "Tools: ComfyUI, Forge UI, A1111, Google AI Studio",
             "catAutomation": "Automation",
             "catFrontend": "Frontend & Others",
@@ -72,9 +76,9 @@
     "projects": {
         "title": "Personal Projects (Generative AI)",
         "imageGen": {
-            "title": "Advanced Image Generation & Consistency",
-            "desc": "I have researched and applied models like Stable Diffusion (SDXL, Flux) using interfaces such as ComfyUI and Forge UI. I developed advanced prompt engineering techniques, trained custom LoRA models (with Kohya/OneTrainer), and used automation scripts to generate photorealistic images in bulk, achieving character consistency and applying advanced face swapping to enhance social media engagement.",
-            "tech": "Tech: Python, Stable Diffusion, LoRA, ComfyUI, Forge UI"
+            "title": "Advanced Image Generation, Consistency & AI Agents",
+            "desc": "I have researched and applied models like Stable Diffusion (SDXL, Flux) using interfaces such as ComfyUI and Forge UI. I developed advanced prompt engineering techniques, trained custom LoRA models (with Kohya/OneTrainer), and used automation scripts to generate photorealistic images in bulk, achieving character consistency and applying advanced face swapping to enhance social media engagement. I have also explored the creation of AI Agents with LLMs (Langchain).",
+            "tech": "Tech: Python, Stable Diffusion, LoRA, Langchain, ComfyUI, Forge UI"
         },
         "videoGen": {
             "title": "AI Video Creation",
