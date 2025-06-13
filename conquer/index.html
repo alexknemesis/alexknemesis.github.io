@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Lumina Mejorado</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    #videoContainer {
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 1 / 1;
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: background 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .bkg-0 {
+      background: url('img/bkg-0.png') center center / cover no-repeat fixed !important;
+    }
+    .bkg-x {
+      background: url('img/bkg-x.png') center center / cover no-repeat fixed !important;
+    }
+    .bkg-y {
+      background: url('img/bkg-y.png') center center / cover no-repeat fixed !important;
+    }
+    .bkg-a {
+      background: url('img/bkg-a.png') center center / cover no-repeat fixed !important;
+    }
+    .bkg-b {
+      background: url('img/bkg-b.png') center center / cover no-repeat fixed !important;
+    }
+    .video-container {
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 640px;
+      height: 360px;
+      margin-top: 20px;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+      background: transparent;
+      max-height: 60vw;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    button {
+      background-color: #007bff;
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 18px;
+      margin: 0 10px;
+      padding: 10px;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      flex: 1 1 40px;
+      min-width: 40px;
+      max-width: 60px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    button:focus {
+      outline: none;
+    }
+    #currentVideo {
+      font-size: 18px;
+      color: #333;
+      margin-top: 10px;
+    }
+    @media (max-width: 600px) {
+      #videoContainer {
+        max-width: 98vw;
+        aspect-ratio: 1 / 1;
+        padding: 3vw;
+      }
+      video {
+        max-height: 80vw;
+        aspect-ratio: 1 / 1;
+      }
+      .controls {
+        gap: 6px;
+      }
+      button {
+        font-size: 16px;
+        padding: 7px;
+        width: 38px;
+        height: 38px;
+        min-width: 30px;
+        max-width: 45px;
+      }
+      h1 {
+        font-size: 1.4em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Lumina POC</h1>
+  <div id="videoContainer">
+    <video id="luminaVideo" autoplay loop muted playsinline>
+      <source src="video/lumina-0.webm" type='video/webm; codecs="vp9"' />
+      Tu navegador no soporta video WebM.
+    </video>
+  </div>
+
+  <div class="controls">
+    <button id="btnMinus2">😢</button>
+    <button id="btnMinus1">🙁</button>
+    <button id="btn0">😐</button>
+    <button id="btnPlus1">🙂</button>
+    <button id="btnPlus2">😁</button>
+  </div>
+
+  <div id="currentVideo">Reproduciendo: lumina-0.webm</div>
+
+  <script>
+    const video = document.getElementById('luminaVideo');
+    const currentVideo = document.getElementById('currentVideo');
+
+    function playSequence(files) {
+      video.loop = false;
+      let i = 0;
+      video.src = files[i];
+      video.load();
+      video.play();
+      currentVideo.textContent = `Reproduciendo: ${files[i]}`;
+
+      video.onended = function() {
+        i++;
+        if (i < files.length) {
+          video.src = files[i];
+          video.load();
+          video.play();
+          currentVideo.textContent = `Reproduciendo: ${files[i]}`;
+        } else {
+          video.onended = null;
+          currentVideo.textContent = `Reproducción finalizada`;
+        }
+      };
+    }
+
+    // Utilidad para cambiar el fondo con clases exclusivas
+    function setBackground(className) {
+      const vc = document.getElementById('videoContainer');
+      vc.classList.remove('bkg-0', 'bkg-x', 'bkg-y', 'bkg-a', 'bkg-b');
+      vc.classList.add(className);
+    }
+
+    document.getElementById('btnMinus2').onclick = () => {
+      playSequence(['video/lumina-x.webm', 'video/lumina-y.webm']);
+      setBackground('bkg-y');
+    };
+    document.getElementById('btnMinus1').onclick = () => {
+      playSequence(['video/lumina-x.webm']);
+      setBackground('bkg-x');
+    };
+    document.getElementById('btn0').onclick = () => {
+      video.onended = null;
+      video.loop = true;
+      video.src = 'video/lumina-0.webm';
+      video.load();
+      video.play();
+      currentVideo.textContent = `Reproduciendo: lumina-0.webm`;
+      setBackground('bkg-0');
+    };
+    document.getElementById('btnPlus1').onclick = () => {
+      playSequence(['video/lumina-a.webm']);
+      setBackground('bkg-a');
+    };
+    document.getElementById('btnPlus2').onclick = () => {
+      playSequence(['video/lumina-a.webm', 'video/lumina-b.webm']);
+      setBackground('bkg-b');
+    };
+
+    // Fondo inicial neutral
+    setBackground('bkg-0');
+  </script>
+
+</body>
+</html>
