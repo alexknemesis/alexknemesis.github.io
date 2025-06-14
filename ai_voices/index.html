@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo de Voces AI</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+        }
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 32px 16px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .voice-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+        .voice-item {
+            border-radius: 8px;
+            padding: 16px;
+            width: 220px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .voice-item.femenina {
+            background: #ffe4ec; /* rosa salmón muy suave */
+        }
+        .voice-item.masculina {
+            background: #e3f0ff; /* azul muy suave */
+        }
+        .voice-label {
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #222;
+        }
+        audio {
+            width: 100%;
+            outline: none;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px 2px;
+            }
+            .voice-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Demo de Voces AI</h1>
+        <h2>Voces Femeninas</h2>
+        <div class="voice-list">
+            <div class="voice-item femenina">
+                <span class="voice-label">Achernar</span>
+                <audio controls src="audio_samples/f-achernar.wav"></audio>
+            </div>
+            <div class="voice-item femenina">
+                <span class="voice-label">Aoede</span>
+                <audio controls src="audio_samples/f-aoede.wav"></audio>
+            </div>
+            <div class="voice-item femenina">
+                <span class="voice-label">Autonoe</span>
+                <audio controls src="audio_samples/f-autonoe.wav"></audio>
+            </div>
+            <div class="voice-item femenina">
+                <span class="voice-label">Callirrhoe</span>
+                <audio controls src="audio_samples/f-callirrhoe.wav"></audio>
+            </div>
+            <div class="voice-item femenina">
+                <span class="voice-label">Despina</span>
+                <audio controls src="audio_samples/f-despina.wav"></audio>
+            </div>
+            <div class="voice-item femenina">
+                <span class="voice-label">Erinome</span>
+                <audio controls src="audio_samples/f-erinome.wav"></audio>
+            </div>
+            <div class="voice-item femenina">
+                <span class="voice-label">Gacrux</span>
+                <audio controls src="audio_samples/f-gacrux.wav"></audio>
+            </div>
+            <div class="voice-item femenina">
+                <span class="voice-label">Kore</span>
+                <audio controls src="audio_samples/f-kore.wav"></audio>
+            </div>
+            <div class="voice-item femenina">
+                <span class="voice-label">Laomedeia</span>
+                <audio controls src="audio_samples/f-laomedeia.wav"></audio>
+            </div>
+            <div class="voice-item femenina">
+                <span class="voice-label">Leda</span>
+                <audio controls src="audio_samples/f-leda.wav"></audio>
+            </div>
+            <div class="voice-item femenina">
+                <span class="voice-label">Pulcherrima</span>
+                <audio controls src="audio_samples/f-pulcherrima.wav"></audio>
+            </div>
+            <div class="voice-item femenina">
+                <span class="voice-label">Zephyr</span>
+                <audio controls src="audio_samples/f-zephyr.wav"></audio>
+            </div>
+        </div>
+        <h2>Voces Masculinas</h2>
+        <div class="voice-list">
+            <div class="voice-item masculina">
+                <span class="voice-label">Achird</span>
+                <audio controls src="audio_samples/m-achird.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Algenib</span>
+                <audio controls src="audio_samples/m-algenib.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Algieba</span>
+                <audio controls src="audio_samples/m-algieba.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Alnilam</span>
+                <audio controls src="audio_samples/m-alnilam.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Charon</span>
+                <audio controls src="audio_samples/m-charon.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Enceladus</span>
+                <audio controls src="audio_samples/m-enceladus.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Fenrir</span>
+                <audio controls src="audio_samples/m-fenrir.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Iapetus</span>
+                <audio controls src="audio_samples/m-iapetus.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Orus</span>
+                <audio controls src="audio_samples/m-orus.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Puck</span>
+                <audio controls src="audio_samples/m-puck.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Rasalgethi</span>
+                <audio controls src="audio_samples/m-rasalgethi.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Sadachbia</span>
+                <audio controls src="audio_samples/m-sadachbia.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Sadaltager</span>
+                <audio controls src="audio_samples/m-sadaltager.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Schedar</span>
+                <audio controls src="audio_samples/m-schedar.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Umbriel</span>
+                <audio controls src="audio_samples/m-umbriel.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Vindemiatrix</span>
+                <audio controls src="audio_samples/m-vindemiatrix.wav"></audio>
+            </div>
+            <div class="voice-item masculina">
+                <span class="voice-label">Zubenelgenubi</span>
+                <audio controls src="audio_samples/m-zubenelgenubi.wav"></audio>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Permitir solo un audio a la vez
+        document.addEventListener('DOMContentLoaded', function() {
+            const audios = document.querySelectorAll('audio');
+            audios.forEach(audio => {
+                audio.addEventListener('play', function() {
+                    audios.forEach(other => {
+                        if (other !== audio) {
+                            other.pause();
+                            other.currentTime = 0;
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
