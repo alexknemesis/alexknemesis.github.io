@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo de Voces AI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Demo de Voces AI</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;500&display=swap"
+            rel="stylesheet">
+        <style>
         :root {
             --femenina-bg: #3c2232;
             --masculina-bg: #212b3a;
@@ -192,411 +194,664 @@
             letter-spacing: 0.2px;
         }
     </style>
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <!-- Simple SVG icon for audio/voice -->
-            <svg viewBox="0 0 48 48" fill="none">
-                <ellipse cx="24" cy="24" rx="20" ry="20" fill="#e3f0ff"/>
-                <path d="M24 12v14a6 6 0 0 1-6 6h0a6 6 0 0 1-6-6V18" stroke="#5b6ee1" stroke-width="2.5" stroke-linecap="round"/>
-                <rect x="28" y="18" width="7" height="14" rx="3.5" fill="#ffb6d5"/>
-            </svg>
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <!-- Simple SVG icon for audio/voice -->
+                <svg viewBox="0 0 48 48" fill="none">
+                    <ellipse cx="24" cy="24" rx="20" ry="20" fill="#e3f0ff" />
+                    <path d="M24 12v14a6 6 0 0 1-6 6h0a6 6 0 0 1-6-6V18"
+                        stroke="#5b6ee1" stroke-width="2.5"
+                        stroke-linecap="round" />
+                    <rect x="28" y="18" width="7" height="14" rx="3.5"
+                        fill="#ffb6d5" />
+                </svg>
+            </div>
+            <h1>Demo de Voces AI</h1>
+            <div class="subtitle">Explora y escucha voces generadas por
+                inteligencia artificial<br>Elige entre voces femeninas y
+                masculinas</div>
+        </header>
+        <div class="container">
+            <section>
+                <h2>Voces Femeninas</h2>
+                <div class="voice-list">
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Achernar</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/f-achernar.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Aoede</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls src="audio_samples/f-aoede.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Autonoe</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/f-autonoe.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Callirrhoe</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/f-callirrhoe.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Despina</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/f-despina.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Erinome</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/f-erinome.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Gacrux</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/f-gacrux.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Kore</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls src="audio_samples/f-kore.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Laomedeia</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/f-laomedeia.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Leda</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls src="audio_samples/f-leda.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Pulcherrima</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/f-pulcherrima.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Vindemiatrix</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-vindemiatrix.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Zephyr</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/f-zephyr.wav"></audio>
+                    </div>
+                    <div class="voice-item femenina">
+                        <span class="voice-label">Sulafat</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/f-sulafat.wav"></audio>
+                    </div>
+                </div>
+            </section>
+            <hr class="divider">
+            <section>
+                <h2>Voces Masculinas</h2>
+                <div class="voice-list">
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Achird</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-achird.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Algenib</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-algenib.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Algieba</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-algieba.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Alnilam</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-alnilam.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Charon</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-charon.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Enceladus</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-enceladus.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Fenrir</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-fenrir.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Iapetus</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-iapetus.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Orus</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls src="audio_samples/m-orus.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Puck</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls src="audio_samples/m-puck.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Rasalgethi</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-rasalgethi.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Sadachbia</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-sadachbia.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Sadaltager</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-sadaltager.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Schedar</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-schedar.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Umbriel</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-umbriel.wav"></audio>
+                    </div>
+                    <div class="voice-item masculina">
+                        <span class="voice-label">Zubenelgenubi</span>
+                        <div class="wave-container"
+                            style="height:32px;margin-bottom:8px;display:none;">
+                            <svg class="wavesvg" width="60" height="32"
+                                viewBox="0 0 60 32">
+                                <rect class="wave-bar" fill="#b0b3b8" x="4"
+                                    y="10" width="6" height="12" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="16"
+                                    y="7" width="6" height="18" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="28"
+                                    y="12" width="6" height="8" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="40"
+                                    y="5" width="6" height="22" rx="3" />
+                                <rect class="wave-bar" fill="#b0b3b8" x="52"
+                                    y="14" width="6" height="6" rx="3" />
+                            </svg>
+                        </div>
+                        <audio controls
+                            src="audio_samples/m-zubenelgenubi.wav"></audio>
+                    </div>
+                </div>
+            </section>
         </div>
-        <h1>Demo de Voces AI</h1>
-        <div class="subtitle">Explora y escucha voces generadas por inteligencia artificial<br>Elige entre voces femeninas y masculinas</div>
-    </header>
-    <div class="container">
-        <section>
-            <h2>Voces Femeninas</h2>
-            <div class="voice-list">
-                <div class="voice-item femenina">
-                    <span class="voice-label">Achernar</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/f-achernar.wav"></audio>
-                </div>
-                <div class="voice-item femenina">
-                    <span class="voice-label">Aoede</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/f-aoede.wav"></audio>
-                </div>
-                <div class="voice-item femenina">
-                    <span class="voice-label">Autonoe</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/f-autonoe.wav"></audio>
-                </div>
-                <div class="voice-item femenina">
-                    <span class="voice-label">Callirrhoe</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/f-callirrhoe.wav"></audio>
-                </div>
-                <div class="voice-item femenina">
-                    <span class="voice-label">Despina</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/f-despina.wav"></audio>
-                </div>
-                <div class="voice-item femenina">
-                    <span class="voice-label">Erinome</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/f-erinome.wav"></audio>
-                </div>
-                <div class="voice-item femenina">
-                    <span class="voice-label">Gacrux</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/f-gacrux.wav"></audio>
-                </div>
-                <div class="voice-item femenina">
-                    <span class="voice-label">Kore</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/f-kore.wav"></audio>
-                </div>
-                <div class="voice-item femenina">
-                    <span class="voice-label">Laomedeia</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/f-laomedeia.wav"></audio>
-                </div>
-                <div class="voice-item femenina">
-                    <span class="voice-label">Leda</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/f-leda.wav"></audio>
-                </div>
-                <div class="voice-item femenina">
-                    <span class="voice-label">Pulcherrima</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/f-pulcherrima.wav"></audio>
-                </div>
-                <div class="voice-item femenina">
-                    <span class="voice-label">Zephyr</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/f-zephyr.wav"></audio>
-                </div>
-            </div>
-        </section>
-        <hr class="divider">
-        <section>
-            <h2>Voces Masculinas</h2>
-            <div class="voice-list">
-                <div class="voice-item masculina">
-                    <span class="voice-label">Achird</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-achird.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Algenib</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-algenib.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Algieba</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-algieba.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Alnilam</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-alnilam.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Charon</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-charon.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Enceladus</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-enceladus.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Fenrir</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-fenrir.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Iapetus</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-iapetus.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Orus</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-orus.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Puck</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-puck.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Rasalgethi</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-rasalgethi.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Sadachbia</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-sadachbia.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Sadaltager</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-sadaltager.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Schedar</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-schedar.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Umbriel</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-umbriel.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Vindemiatrix</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-vindemiatrix.wav"></audio>
-                </div>
-                <div class="voice-item masculina">
-                    <span class="voice-label">Zubenelgenubi</span>
-                    <div class="wave-container" style="height:32px;margin-bottom:8px;display:none;">
-    <svg class="wavesvg" width="60" height="32" viewBox="0 0 60 32">
-        <rect class="wave-bar" fill="#b0b3b8" x="4"  y="10" width="6" height="12" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="16" y="7"  width="6" height="18" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="28" y="12" width="6" height="8"  rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="40" y="5"  width="6" height="22" rx="3"/>
-        <rect class="wave-bar" fill="#b0b3b8" x="52" y="14" width="6" height="6"  rx="3"/>
-    </svg>
-</div>
-<audio controls src="audio_samples/m-zubenelgenubi.wav"></audio>
-                </div>
-            </div>
-        </section>
-    </div>
-    <script>
+        <script>
         // Permitir solo un audio a la vez
         document.addEventListener('DOMContentLoaded', function() {
             const audios = document.querySelectorAll('audio');
@@ -612,7 +867,7 @@
             });
         });
     </script>
-    <script>
+        <script>
         // Animación de ondas SVG mientras el audio está sonando
         document.addEventListener('DOMContentLoaded', function() {
             function animateBars(svg) {
@@ -670,8 +925,9 @@
             });
         });
     </script>
-    <footer>
-        &copy; 2025 Demo de Voces AI &mdash; Melissa G | Inspirado por la tecnología de IA
-    </footer>
-</body>
+        <footer>
+            &copy; 2025 Demo de Voces AI &mdash; Melissa G | Inspirado por la
+            tecnología de IA
+        </footer>
+    </body>
 </html>
