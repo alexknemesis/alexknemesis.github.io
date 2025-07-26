@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Déficit Calórico - 6 Días</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .menu-card.sopa {
+            background: linear-gradient(145deg, #fff 0%, #f8f9ff 100%);
+        }
+
+        .menu-card.segundo {
+            background: linear-gradient(145deg, #fff 0%, #fff8f8 100%);
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .day-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .meal-type {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .meal-type.sopa {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .meal-type.segundo {
+            background: #fce4ec;
+            color: #c2185b;
+        }
+
+        .dish-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .nutrition-info {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+        }
+
+        .nutrition-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .nutrition-value {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nutrition-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .ingredients-section, .preparation-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ingredients-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .preparation-steps {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .toggle-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .toggle-btn:hover {
+            background: #5a67d8;
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .summary-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .summary-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .summary-table th {
+            background: rgba(255, 255, 255, 0.2);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .nutrition-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .day-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+
+        .icon {
+            font-size: 1.2rem;
+        }
+
+        .notes-section {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .notes-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notes-list {
+            color: #856404;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍽️ Menú Déficit Calórico</h1>
+            <p>6 días para 3 personas • Máximo 800 calorías por persona</p>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+            <!-- Los cards se generarán con JavaScript -->
+        </div>
+
+        <div class="summary-section">
+            <h2 class="summary-title">📊 Resumen Nutricional</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Día</th>
+                        <th>Tipo</th>
+                        <th>Calorías</th>
+                        <th>Carbohidratos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lunes</td>
+                        <td>Sopa</td>
+                        <td>780</td>
+                        <td>25g</td>
+                    </tr>
+                    <tr>
+                        <td>Martes</td>
+                        <td>Segundo</td>
+                        <td>795</td>
+                        <td>30g</td>
+                    </tr>
+                    <tr>
+                        <td>Miércoles</td>
+                        <td>Sopa</td>
+                        <td>785</td>
+                        <td>22g</td>
+                    </tr>
+                    <tr>
+                        <td>Jueves</td>
+                        <td>Segundo</td>
+                        <td>790</td>
+                        <td>28g</td>
+                    </tr>
+                    <tr>
+                        <td>Viernes</td>
+                        <td>Sopa</td>
+                        <td>775</td>
+                        <td>20g</td>
+                    </tr>
+                    <tr>
+                        <td>Sábado</td>
+                        <td>Segundo</td>
+                        <td>800</td>
+                        <td>32g</td>
+                    </tr>
+                    <tr style="background: rgba(255,255,255,0.2); font-weight: bold;">
+                        <td colspan="2">Promedio Diario</td>
+                        <td>787</td>
+                        <td>26g</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="notes-section">
+            <h3 class="notes-title">⚠️ Notas Importantes</h3>
+            <div class="notes-list">
+                <p><strong>✓ Proteína:</strong> Cada plato contiene exactamente 300g de proteína animal para 3 personas (100g por persona)</p>
+                <p><strong>✓ Cocción:</strong> Las sopas no llevan aceite, las carnes se cocinan en plancha antiadherente</p>
+                <p><strong>✓ Verduras:</strong> Priorizadas las verduras al vapor en platos secos para mejor absorción de nutrientes</p>
+                <p><strong>✓ Alternancia:</strong> Esta semana incluye cerdo (sábado). La próxima semana reemplazar por pescado</p>
+                <p><strong>✓ Carbohidratos:</strong> Mantenidos bajos según requerimiento, principalmente arroz blanco sin aceite</p>
+                <p><strong>✓ Hidratación:</strong> Acompañar siempre con abundante agua</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menuData = [
+            {
+                day: "LUNES",
+                type: "sopa",
+                dish: "Sopa de Pollo con Verduras",
+                calories: 780,
+                carbs: 25,
+                ingredients: `• Pollo sin piel: 900g (pechuga y muslo)
+• Zanahoria: 300g
+• Apio: 200g
+• Cebolla blanca: 150g
+• Espinaca: 200g
+• Papa blanca: 150g (pequeña cantidad)
+• Choclo desgranado: 100g
+• Tomate: 200g
+• Ajo: 15g
+• Perejil: 30g
+• Sal y pimienta al gusto
+• Agua: 2 litros`,
+                preparation: `1. En una olla grande, colocar el pollo con agua fría y llevar a ebullición
+2. Retirar la espuma y agregar la cebolla, ajo, sal y pimienta
+3. Cocinar por 30 minutos hasta que el pollo esté tierno
+4. Retirar el pollo, deshilachar y reservar
+5. En el mismo caldo, agregar zanahoria y papa cortadas en cubos
+6. Cocinar 10 minutos, agregar apio, tomate y choclo
+7. Cocinar 15 minutos más, agregar espinaca y pollo deshilachado
+8. Cocinar 5 minutos adicionales, ajustar sal y servir con perejil`
+            },
+            {
+                day: "MARTES",
+                type: "segundo",
+                dish: "Pollo a la Plancha con Verduras al Vapor",
+                calories: 795,
+                carbs: 30,
+                ingredients: `• Pechuga de pollo sin piel: 900g
+• Arroz blanco: 225g (crudo)
+• Brócoli: 300g
+• Zanahoria: 250g
+• Ejotes: 200g
+• Tomate: 200g
+• Lechuga: 150g
+• Pepino: 150g
+• Sal, pimienta, ajo en polvo
+• Limón: 2 unidades`,
+                preparation: `1. Sazonar el pollo con sal, pimienta y ajo en polvo
+2. Cocinar el pollo en plancha o sartén antiadherente sin aceite, 6-8 minutos por lado
+3. Cocinar el arroz con agua y sal (proporción 1:2)
+4. Cocer al vapor brócoli, zanahoria y ejotes por 10-12 minutos
+5. Preparar ensalada cruda con lechuga, tomate y pepino
+6. Servir el pollo con arroz, verduras al vapor y ensalada
+7. Aderezar con limón al gusto`
+            },
+            {
+                day: "MIÉRCOLES",
+                type: "sopa",
+                dish: "Sopa de Carne de Res con Verduras",
+                calories: 785,
+                carbs: 22,
+                ingredients: `• Carne de res magra (pulpa): 900g
+• Repollo: 300g
+• Apio: 200g
+• Zanahoria: 250g
+• Cebolla blanca: 120g
+• Tomate: 200g
+• Acelga: 200g
+• Choclo desgranado: 80g
+• Ajo: 12g
+• Culantro: 30g
+• Sal y pimienta al gusto
+• Agua: 2.5 litros`,
+                preparation: `1. Cortar la carne en trozos medianos y cocinar en agua hirviendo por 45 minutos
+2. Agregar cebolla, ajo, sal y pimienta
+3. Cocinar 30 minutos más hasta que la carne esté tierna
+4. Agregar zanahoria en cubos y cocinar 10 minutos
+5. Añadir apio, repollo, tomate y choclo
+6. Cocinar 15 minutos, agregar acelga
+7. Cocinar 5 minutos adicionales y servir con culantro fresco`
+            },
+            {
+                day: "JUEVES",
+                type: "segundo",
+                dish: "Carne de Res al Sartén con Verduras",
+                calories: 790,
+                carbs: 28,
+                ingredients: `• Carne de res magra: 900g
+• Arroz blanco: 210g (crudo)
+• Coliflor: 300g
+• Pimentón rojo y verde: 200g
+• Cebolla blanca: 150g
+• Tomate: 180g
+• Lechuga: 120g
+• Ajo: 12g
+• Sal, pimienta, comino
+• Limón: 2 unidades`,
+                preparation: `1. Cortar la carne en tiras finas
+2. Sazonar con sal, pimienta, ajo y comino
+3. Cocinar en sartén antiadherente sin aceite, dorando bien
+4. En la misma sartén, saltear cebolla y pimentón hasta dorar
+5. Agregar tomate y cocinar 5 minutos más
+6. Cocinar arroz blanco con agua y sal
+7. Cocer coliflor al vapor por 8-10 minutos
+8. Servir con ensalada de lechuga y aderezar con limón`
+            },
+            {
+                day: "VIERNES",
+                type: "sopa",
+                dish: "Sopa de Pollo con Verduras Verdes",
+                calories: 775,
+                carbs: 20,
+                ingredients: `• Pollo sin piel (muslos): 900g
+• Espinaca: 250g
+• Acelga: 200g
+• Apio: 180g
+• Cebolla blanca: 120g
+• Zanahoria: 200g
+• Perejil: 40g
+• Ajo: 15g
+• Papa blanca: 120g
+• Sal y pimienta al gusto
+• Agua: 2 litros`,
+                preparation: `1. Cocinar el pollo en agua con sal, cebolla y ajo por 35 minutos
+2. Retirar el pollo, deshilachar y reservar
+3. En el caldo, agregar zanahoria y papa en cubos pequeños
+4. Cocinar 12 minutos, agregar apio
+5. Cocinar 8 minutos más, agregar espinaca y acelga
+6. Agregar el pollo deshilachado y cocinar 5 minutos
+7. Servir con perejil fresco picado`
+            },
+            {
+                day: "SÁBADO",
+                type: "segundo",
+                dish: "Pierna de Cerdo con Verduras",
+                calories: 800,
+                carbs: 32,
+                ingredients: `• Pierna de cerdo magra: 900g
+• Arroz blanco: 240g (crudo)
+• Brócoli: 250g
+• Ejotes: 200g
+• Zanahoria: 200g
+• Tomate: 150g
+• Cebolla blanca: 100g
+• Ajo: 12g
+• Sal, pimienta, orégano
+• Limón: 2 unidades`,
+                preparation: `1. Cortar la pierna de cerdo en medallones
+2. Sazonar con sal, pimienta, ajo y orégano
+3. Cocinar en plancha o sartén antiadherente sin aceite, 8-10 minutos por lado
+4. Cocinar arroz blanco con agua y sal
+5. Cocer al vapor brócoli, ejotes y zanahoria por 10-12 minutos
+6. Preparar ensalada con tomate y cebolla
+7. Servir todo junto y aderezar con limón`
+            }
+        ];
+
+        function createMenuCard(data) {
+            return `
+                <div class="menu-card ${data.type}">
+                    <div class="day-header">
+                        <div class="day-title">${data.day}</div>
+                        <div class="meal-type ${data.type}">${data.type}</div>
+                    </div>
+                    
+                    <div class="dish-name">${data.dish}</div>
+                    
+                    <div class="nutrition-info">
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">${data.calories}</div>
+                            <div class="nutrition-label">Calorías</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">${data.carbs}g</div>
+                            <div class="nutrition-label">Carbohidratos</div>
+                        </div>
+                    </div>
+                    
+                    <div class="ingredients-section">
+                        <div class="section-title">
+                            <span class="icon">🛒</span>
+                            Ingredientes (3 personas)
+                        </div>
+                        <div class="ingredients-list hidden" id="ingredients-${data.day}">
+                            ${data.ingredients.split('\n').map(line => `<div>${line}</div>`).join('')}
+                        </div>
+                        <button class="toggle-btn" onclick="toggleSection('ingredients-${data.day}', this)">
+                            Ver Ingredientes
+                        </button>
+                    </div>
+                    
+                    <div class="preparation-section">
+                        <div class="section-title">
+                            <span class="icon">👨‍🍳</span>
+                            Preparación
+                        </div>
+                        <div class="preparation-steps hidden" id="preparation-${data.day}">
+                            ${data.preparation.split('\n').map(line => `<div>${line}</div>`).join('')}
+                        </div>
+                        <button class="toggle-btn" onclick="toggleSection('preparation-${data.day}', this)">
+                            Ver Preparación
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleSection(sectionId, button) {
+            const section = document.getElementById(sectionId);
+            const isHidden = section.classList.contains('hidden');
+            
+            if (isHidden) {
+                section.classList.remove('hidden');
+                button.textContent = button.textContent.replace('Ver', 'Ocultar');
+            } else {
+                section.classList.add('hidden');
+                button.textContent = button.textContent.replace('Ocultar', 'Ver');
+            }
+        }
+
+        // Generar las tarjetas del menú
+        document.getElementById('menuGrid').innerHTML = menuData.map(createMenuCard).join('');
+    </script>
+</body>
+</html>
