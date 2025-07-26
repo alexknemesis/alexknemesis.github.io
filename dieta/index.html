@@ -295,6 +295,162 @@
             color: #856404;
             line-height: 1.6;
         }
+
+        .shopping-section {
+            background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .shopping-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .shopping-subtitle {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .shopping-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .shopping-category {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .shopping-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .shopping-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .shopping-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .shopping-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #96c93d;
+        }
+
+        .shopping-item label {
+            cursor: pointer;
+            font-size: 1rem;
+            line-height: 1.4;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+
+        .shopping-item input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .shopping-summary {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .progress-container {
+            margin-bottom: 20px;
+        }
+
+        .progress-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #96c93d, #00b09b);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .print-btn {
+            background: white;
+            color: #00b09b;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .print-btn:hover {
+            background: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .shopping-section, .shopping-section * {
+                visibility: visible;
+            }
+            .shopping-section {
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: white !important;
+                color: black !important;
+            }
+            .shopping-category {
+                background: #f8f9fa !important;
+                color: black !important;
+            }
+            .print-btn {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -363,6 +519,175 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="shopping-section">
+            <h3 class="shopping-title">🛒 Lista de Supermercado</h3>
+            <p class="shopping-subtitle">Ingredientes necesarios para toda la semana (6 días, 3 personas)</p>
+            
+            <div class="shopping-grid">
+                <div class="shopping-category">
+                    <h4 class="category-title">🥩 Carnes y Proteínas</h4>
+                    <div class="shopping-list">
+                        <div class="shopping-item">
+                            <input type="checkbox" id="pollo-pechuga">
+                            <label for="pollo-pechuga">Pechuga de pollo (sin piel) - 900g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="pollo-muslos">
+                            <label for="pollo-muslos">Muslos de pollo (sin piel) - 1.8kg</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="carne-res">
+                            <label for="carne-res">Carne de res magra (pulpa) - 1.8kg</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="pierna-cerdo">
+                            <label for="pierna-cerdo">Pierna de cerdo magra - 900g</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shopping-category">
+                    <h4 class="category-title">🌾 Cereales y Granos</h4>
+                    <div class="shopping-list">
+                        <div class="shopping-item">
+                            <input type="checkbox" id="arroz">
+                            <label for="arroz">Arroz blanco - 675g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="choclo">
+                            <label for="choclo">Choclo desgranado - 180g</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shopping-category">
+                    <h4 class="category-title">🥕 Verduras</h4>
+                    <div class="shopping-list">
+                        <div class="shopping-item">
+                            <input type="checkbox" id="zanahoria">
+                            <label for="zanahoria">Zanahoria - 1.2kg</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="cebolla">
+                            <label for="cebolla">Cebolla blanca - 750g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="tomate">
+                            <label for="tomate">Tomate - 930g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="apio">
+                            <label for="apio">Apio - 580g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="papa">
+                            <label for="papa">Papa blanca - 270g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="brocoli">
+                            <label for="brocoli">Brócoli - 550g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="coliflor">
+                            <label for="coliflor">Coliflor - 300g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="ejotes">
+                            <label for="ejotes">Ejotes - 400g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="pimenton">
+                            <label for="pimenton">Pimentón rojo y verde - 200g</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shopping-category">
+                    <h4 class="category-title">🥬 Verduras de Hoja</h4>
+                    <div class="shopping-list">
+                        <div class="shopping-item">
+                            <input type="checkbox" id="espinaca">
+                            <label for="espinaca">Espinaca - 450g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="acelga">
+                            <label for="acelga">Acelga - 400g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="repollo">
+                            <label for="repollo">Repollo - 300g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="lechuga">
+                            <label for="lechuga">Lechuga - 270g</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shopping-category">
+                    <h4 class="category-title">🌿 Condimentos y Hierbas</h4>
+                    <div class="shopping-list">
+                        <div class="shopping-item">
+                            <input type="checkbox" id="ajo">
+                            <label for="ajo">Ajo - 66g (1 cabeza grande)</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="perejil">
+                            <label for="perejil">Perejil - 70g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="culantro">
+                            <label for="culantro">Culantro - 30g</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="limon">
+                            <label for="limon">Limón - 6 unidades</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="sal">
+                            <label for="sal">Sal</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="pimienta">
+                            <label for="pimienta">Pimienta negra</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="comino">
+                            <label for="comino">Comino</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="oregano">
+                            <label for="oregano">Orégano</label>
+                        </div>
+                        <div class="shopping-item">
+                            <input type="checkbox" id="ajo-polvo">
+                            <label for="ajo-polvo">Ajo en polvo</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shopping-category">
+                    <h4 class="category-title">🥒 Otros</h4>
+                    <div class="shopping-list">
+                        <div class="shopping-item">
+                            <input type="checkbox" id="pepino">
+                            <label for="pepino">Pepino - 150g</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shopping-summary">
+                <div class="progress-container">
+                    <div class="progress-text">Progreso de compras: <span id="progress-count">0</span> / <span id="total-items">0</span> items</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+                <button class="print-btn" onclick="printShoppingList()">🖨️ Imprimir Lista</button>
+            </div>
         </div>
 
         <div class="notes-section">
@@ -596,8 +921,39 @@
             }
         }
 
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.shopping-item input[type="checkbox"]');
+            const checked = document.querySelectorAll('.shopping-item input[type="checkbox"]:checked');
+            const total = checkboxes.length;
+            const checkedCount = checked.length;
+            const percentage = total > 0 ? (checkedCount / total) * 100 : 0;
+
+            document.getElementById('progress-count').textContent = checkedCount;
+            document.getElementById('total-items').textContent = total;
+            document.getElementById('progress-fill').style.width = percentage + '%';
+        }
+
+        function printShoppingList() {
+            window.print();
+        }
+
+        function initializeShoppingList() {
+            const checkboxes = document.querySelectorAll('.shopping-item input[type="checkbox"]');
+            
+            // Inicializar progreso
+            updateProgress();
+            
+            // Agregar event listeners
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+        }
+
         // Generar las tarjetas del menú
         document.getElementById('menuGrid').innerHTML = menuData.map(createMenuCard).join('');
+
+        // Inicializar la lista de compras cuando se carga la página
+        document.addEventListener('DOMContentLoaded', initializeShoppingList);
     </script>
 </body>
 </html>
