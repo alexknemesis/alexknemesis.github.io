@@ -1,0 +1,449 @@
+{
+  "batch_info": {
+    "timestamp": "20251004040212",
+    "folder": "E:\\PROJECTS AI\\Yaibert\\script\\reports\\batch_20251004040212",
+    "total_images": 25,
+    "successful": 25,
+    "failed": 0,
+    "success_rate": 100,
+    "processing_time_seconds": 123.406
+  },
+  "batch_settings": {
+    "enabled_apis": {
+      "gemini": false,
+      "seadream": false,
+      "reve": true
+    },
+    "selected_folders": [
+      "1",
+      "10",
+      "13",
+      "15",
+      "21",
+      "24",
+      "23",
+      "2B1XUS8N",
+      "32",
+      "38",
+      "4",
+      "42",
+      "47",
+      "52",
+      "56",
+      "57",
+      "60",
+      "58",
+      "63",
+      "7",
+      "71",
+      "69",
+      "89",
+      "85",
+      "2"
+    ],
+    "process_all": false,
+    "custom_prompts": true
+  },
+  "results": [
+    {
+      "job_id": "15",
+      "success": true,
+      "total_time": 22.413,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 22.413,
+          "output_file": "generated_15_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_15_figure.png",
+        "input": "original_15_input.jpeg"
+      }
+    },
+    {
+      "job_id": "10",
+      "success": true,
+      "total_time": 23.695,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 23.695,
+          "output_file": "generated_10_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_10_figure.png",
+        "input": "original_10_input.jpeg"
+      }
+    },
+    {
+      "job_id": "13",
+      "success": true,
+      "total_time": 25.782,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 25.782,
+          "output_file": "generated_13_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_13_figure.png",
+        "input": "original_13_input.jpeg"
+      }
+    },
+    {
+      "job_id": "1",
+      "success": true,
+      "total_time": 25.941,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 25.941,
+          "output_file": "generated_1_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_1_figure.png",
+        "input": "original_1_input.jpeg"
+      }
+    },
+    {
+      "job_id": "21",
+      "success": true,
+      "total_time": 27.927,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 27.927,
+          "output_file": "generated_21_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_21_figure.png",
+        "input": "original_21_input.jpeg"
+      }
+    },
+    {
+      "job_id": "23",
+      "success": true,
+      "total_time": 24.95,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 24.95,
+          "output_file": "generated_23_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_23_figure.png",
+        "input": "original_23_input.jpeg"
+      }
+    },
+    {
+      "job_id": "2B1XUS8N",
+      "success": true,
+      "total_time": 22.977,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 22.977,
+          "output_file": "generated_2B1XUS8N_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_2B1XUS8N_figure.png",
+        "input": "original_2B1XUS8N_input.jpeg"
+      }
+    },
+    {
+      "job_id": "24",
+      "success": true,
+      "total_time": 27.236,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 27.236,
+          "output_file": "generated_24_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_24_figure.png",
+        "input": "original_24_input.jpeg"
+      }
+    },
+    {
+      "job_id": "32",
+      "success": true,
+      "total_time": 24.777,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 24.777,
+          "output_file": "generated_32_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_32_figure.png",
+        "input": "original_32_input.jpeg"
+      }
+    },
+    {
+      "job_id": "38",
+      "success": true,
+      "total_time": 24.429,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 24.429,
+          "output_file": "generated_38_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_38_figure.png",
+        "input": "original_38_input.jpeg"
+      }
+    },
+    {
+      "job_id": "4",
+      "success": true,
+      "total_time": 22.825,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 22.825,
+          "output_file": "generated_4_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_4_figure.png",
+        "input": "original_4_input.jpeg"
+      }
+    },
+    {
+      "job_id": "42",
+      "success": true,
+      "total_time": 23.143,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 23.143,
+          "output_file": "generated_42_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_42_figure.png",
+        "input": "original_42_input.jpeg"
+      }
+    },
+    {
+      "job_id": "52",
+      "success": true,
+      "total_time": 23.487,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 23.487,
+          "output_file": "generated_52_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_52_figure.png",
+        "input": "original_52_input.jpeg"
+      }
+    },
+    {
+      "job_id": "47",
+      "success": true,
+      "total_time": 25.151,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 25.151,
+          "output_file": "generated_47_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_47_figure.png",
+        "input": "original_47_input.jpeg"
+      }
+    },
+    {
+      "job_id": "56",
+      "success": true,
+      "total_time": 23.689,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 23.689,
+          "output_file": "generated_56_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_56_figure.png",
+        "input": "original_56_input.jpeg"
+      }
+    },
+    {
+      "job_id": "57",
+      "success": true,
+      "total_time": 24.974,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 24.974,
+          "output_file": "generated_57_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_57_figure.png",
+        "input": "original_57_input.jpeg"
+      }
+    },
+    {
+      "job_id": "7",
+      "success": true,
+      "total_time": 22.172,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 22.172,
+          "output_file": "generated_7_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_7_figure.png",
+        "input": "original_7_input.jpeg"
+      }
+    },
+    {
+      "job_id": "63",
+      "success": true,
+      "total_time": 23.719,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 23.719,
+          "output_file": "generated_63_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_63_figure.png",
+        "input": "original_63_input.jpeg"
+      }
+    },
+    {
+      "job_id": "60",
+      "success": true,
+      "total_time": 27.312,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 27.312,
+          "output_file": "generated_60_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_60_figure.png",
+        "input": "original_60_input.jpeg"
+      }
+    },
+    {
+      "job_id": "58",
+      "success": true,
+      "total_time": 25.385,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 25.385,
+          "output_file": "generated_58_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_58_figure.png",
+        "input": "original_58_input.jpeg"
+      }
+    },
+    {
+      "job_id": "71",
+      "success": true,
+      "total_time": 21.363,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 21.363,
+          "output_file": "generated_71_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_71_figure.png",
+        "input": "original_71_input.jpeg"
+      }
+    },
+    {
+      "job_id": "89",
+      "success": true,
+      "total_time": 22.917,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 22.917,
+          "output_file": "generated_89_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_89_figure.png",
+        "input": "original_89_input.jpeg"
+      }
+    },
+    {
+      "job_id": "2",
+      "success": true,
+      "total_time": 22.976,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 22.976,
+          "output_file": "generated_2_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_2_figure.png",
+        "input": "original_2_input.jpeg"
+      }
+    },
+    {
+      "job_id": "69",
+      "success": true,
+      "total_time": 24.562,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 24.562,
+          "output_file": "generated_69_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_69_figure.png",
+        "input": "original_69_input.jpeg"
+      }
+    },
+    {
+      "job_id": "85",
+      "success": true,
+      "total_time": 24.184,
+      "results": {
+        "reve": {
+          "success": true,
+          "time": 24.184,
+          "output_file": "generated_85_reve.png"
+        }
+      },
+      "original_files": {
+        "figure": "original_85_figure.png",
+        "input": "original_85_input.jpeg"
+      }
+    }
+  ]
+}

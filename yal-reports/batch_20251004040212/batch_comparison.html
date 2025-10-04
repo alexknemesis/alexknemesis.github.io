@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch Processing Results - 20251004040212</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e5e7eb;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header h1 {
+            color: #60a5fa;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .header p {
+            color: #9ca3af;
+            font-size: 1.1em;
+        }
+
+        .batch-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #60a5fa;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #9ca3af;
+            font-size: 0.9em;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .result-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 20px;
+            overflow: hidden;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .job-id {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #60a5fa;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-failed {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .images-section {
+            margin-bottom: 25px;
+        }
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .image-card {
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .image-card h4 {
+            color: #9ca3af;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .api-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .api-result {
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .api-name {
+            font-size: 0.85em;
+            color: #9ca3af;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .api-status {
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .api-success {
+            color: #22c55e;
+        }
+
+        .api-failed {
+            color: #ef4444;
+        }
+
+        .api-time {
+            font-size: 0.8em;
+            color: #6b7280;
+            margin-top: 3px;
+        }
+
+        /* Debug Section */
+        .debug-section {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 40px auto;
+            max-width: 1400px;
+        }
+
+        .debug-section h2 {
+            color: #9ca3af;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .debug-apis {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .debug-api-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .debug-api-card h3 {
+            color: #60a5fa;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .debug-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .debug-item strong {
+            color: #60a5fa;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .debug-item code {
+            background: rgba(96, 165, 250, 0.2);
+            color: #93c5fd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .debug-item pre {
+            color: #e5e7eb;
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
+            font-size: 0.85rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        /* Prompts Section */
+        .prompts-section {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 40px auto;
+            max-width: 1400px;
+        }
+
+        .prompts-section h2 {
+            color: #9ca3af;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .prompt-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+        }
+
+        .prompt-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .prompt-card h3 {
+            color: #60a5fa;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .prompt-type-badge {
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: normal;
+        }
+
+        .prompt-custom {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .prompt-default {
+            background: rgba(156, 163, 175, 0.2);
+            color: #d1d5db;
+            border: 1px solid rgba(156, 163, 175, 0.3);
+        }
+
+        .prompt-content {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .prompt-text {
+            color: #e5e7eb;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(96, 165, 250, 0.2);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            color: #93c5fd;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .copy-button:hover {
+            background: rgba(96, 165, 250, 0.3);
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+
+        .copy-button.copied {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: rgba(34, 197, 94, 0.3);
+            color: #86efac;
+        }
+
+        /* Before/After Comparison Slider */
+        .comparison-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 15px auto;
+            aspect-ratio: 4 / 3;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.1);
+            background: #0b1222;
+        }
+
+        .comparison-images {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .before-image, .after-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .before-image img, .after-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .after-image {
+            clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+        }
+
+        .slider-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: #60a5fa;
+            transform: translateX(-50%);
+            z-index: 5;
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+        }
+
+        .image-overlay {
+            position: absolute;
+            padding: 8px 12px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            backdrop-filter: blur(4px);
+            z-index: 10;
+        }
+
+        .before-overlay {
+            top: 12px;
+            left: 12px;
+            background: rgba(255, 193, 7, 0.9);
+        }
+
+        .after-overlay {
+            top: 12px;
+            right: 12px;
+            background: rgba(96, 165, 250, 0.9);
+        }
+
+        .slider-control {
+            margin-bottom: 15px;
+        }
+
+        .comparison-range {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.1);
+            outline: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .comparison-range::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #60a5fa;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .comparison-range::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #60a5fa;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .comparison-section {
+            margin-bottom: 25px;
+        }
+
+        .comparison-section h4 {
+            color: #e5e7eb;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .images-section {
+            margin-bottom: 25px;
+        }
+
+        .images-section h3 {
+            color: #e5e7eb;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .image-card {
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .image-card h4 {
+            color: #9ca3af;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .results-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                max-width: 1200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .result-item {
+                max-width: none;
+            }
+            
+            .comparison-container {
+                max-width: none;
+                aspect-ratio: 1 / 1;
+            }
+            
+            @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+                max-width: none;
+            }
+            
+            .batch-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .prompt-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .debug-apis {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .batch-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-container {
+                aspect-ratio: 3 / 4;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎨 AI Image Processing Report</h1>
+        <p>Batch 20251004040212 - Generated on 10/4/2025, 12:02:12 AM</p>
+    </div>
+
+    <div class="batch-stats">
+        <div class="stat-card">
+            <div class="stat-value">25</div>
+            <div class="stat-label">Total Images</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">25</div>
+            <div class="stat-label">Successful</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">0</div>
+            <div class="stat-label">Failed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">100%</div>
+            <div class="stat-label">Success Rate</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">123s</div>
+            <div class="stat-label">Processing Time</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">1</div>
+            <div class="stat-label">APIs Used</div>
+        </div>
+    </div>
+
+    <div class="results-grid">
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">15</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_15_input.jpeg" alt="Original 15" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_15_reve.png" alt="Generated reve 15" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="0-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">22.41s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">10</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_10_input.jpeg" alt="Original 10" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_10_reve.png" alt="Generated reve 10" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="1-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">23.70s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">13</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_13_input.jpeg" alt="Original 13" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_13_reve.png" alt="Generated reve 13" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="2-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">25.78s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">1</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_1_input.jpeg" alt="Original 1" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_1_reve.png" alt="Generated reve 1" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="3-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">25.94s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">21</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_21_input.jpeg" alt="Original 21" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_21_reve.png" alt="Generated reve 21" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="4-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">27.93s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">23</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_23_input.jpeg" alt="Original 23" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_23_reve.png" alt="Generated reve 23" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="5-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">24.95s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">2B1XUS8N</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_2B1XUS8N_input.jpeg" alt="Original 2B1XUS8N" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_2B1XUS8N_reve.png" alt="Generated reve 2B1XUS8N" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="6-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">22.98s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">24</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_24_input.jpeg" alt="Original 24" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_24_reve.png" alt="Generated reve 24" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="7-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">27.24s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">32</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_32_input.jpeg" alt="Original 32" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_32_reve.png" alt="Generated reve 32" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="8-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">24.78s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">38</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_38_input.jpeg" alt="Original 38" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_38_reve.png" alt="Generated reve 38" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="9-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">24.43s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">4</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_4_input.jpeg" alt="Original 4" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_4_reve.png" alt="Generated reve 4" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="10-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">22.82s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">42</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_42_input.jpeg" alt="Original 42" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_42_reve.png" alt="Generated reve 42" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="11-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">23.14s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">52</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_52_input.jpeg" alt="Original 52" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_52_reve.png" alt="Generated reve 52" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="12-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">23.49s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">47</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_47_input.jpeg" alt="Original 47" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_47_reve.png" alt="Generated reve 47" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="13-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">25.15s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">56</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_56_input.jpeg" alt="Original 56" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_56_reve.png" alt="Generated reve 56" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="14-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">23.69s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">57</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_57_input.jpeg" alt="Original 57" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_57_reve.png" alt="Generated reve 57" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="15-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">24.97s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">7</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_7_input.jpeg" alt="Original 7" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_7_reve.png" alt="Generated reve 7" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="16-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">22.17s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">63</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_63_input.jpeg" alt="Original 63" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_63_reve.png" alt="Generated reve 63" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="17-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">23.72s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">60</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_60_input.jpeg" alt="Original 60" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_60_reve.png" alt="Generated reve 60" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="18-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">27.31s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">58</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_58_input.jpeg" alt="Original 58" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_58_reve.png" alt="Generated reve 58" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="19-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">25.39s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">71</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_71_input.jpeg" alt="Original 71" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_71_reve.png" alt="Generated reve 71" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="20-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">21.36s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">89</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_89_input.jpeg" alt="Original 89" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_89_reve.png" alt="Generated reve 89" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="21-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">22.92s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">2</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_2_input.jpeg" alt="Original 2" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_2_reve.png" alt="Generated reve 2" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="22-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">22.98s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">69</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_69_input.jpeg" alt="Original 69" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_69_reve.png" alt="Generated reve 69" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="23-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">24.56s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-header">
+                <div class="job-id">85</div>
+                <div class="status-badge status-success">
+                    ✅ Success
+                </div>
+            </div>
+
+            
+                <div class="comparison-section">
+                    <h4>🔄 REVE Comparison</h4>
+                    <div class="comparison-container">
+                        <div class="comparison-images">
+                            <div class="before-image">
+                                <img src="images/original_85_input.jpeg" alt="Original 85" />
+                                <div class="image-overlay before-overlay">Original</div>
+                            </div>
+                            <div class="after-image">
+                                <img src="images/generated_85_reve.png" alt="Generated reve 85" />
+                                <div class="image-overlay after-overlay">Generated</div>
+                            </div>
+                            <div class="slider-line"></div>
+                        </div>
+                    </div>
+                    <div class="slider-control">
+                        <input type="range" class="comparison-range" min="0" max="100" value="50" data-result="24-0">
+                        <div class="slider-labels">
+                            <span>Original</span>
+                            <span>Generated (REVE)</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="api-results">
+                
+                <div class="api-result">
+                    <div class="api-name">reve</div>
+                    <div class="api-status api-success">
+                        Success
+                    </div>
+                    <div class="api-time">24.18s</div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Prompts Section -->
+    <div class="prompts-section">
+        <h2>📝 Prompts Used in This Batch</h2>
+        <p style="color: #9ca3af; margin-bottom: 20px; font-size: 0.95rem;">
+            Complete prompts for documentation and reference. Click the copy button to copy any prompt to clipboard.
+        </p>
+        <div class="prompt-cards">
+            
+        <div class="prompt-card">
+          <h3>
+            <span>🎨 Reve</span>
+            <span class="prompt-type-badge prompt-default">
+              Default Prompt
+            </span>
+          </h3>
+          <div class="prompt-content">
+            <button class="copy-button" onclick="copyPrompt(this, 'reve')">📋 Copy</button>
+            <pre class="prompt-text" id="prompt-reve">Integrate the 3D character from &lt;img&gt;0&lt;/img&gt; into the real scene from &lt;img&gt;1&lt;/img&gt; replacing the position and size of the referenced similar character. Apply environmental lighting effects that match the environment from &lt;img&gt;1&lt;/img&gt;: natural shadow casting on surfaces, ambient occlusion, and subtle reflections. Use soft, natural shadows that match the scene&#039;s lighting intensity, avoid overly dark or harsh shadows. Ensure the character is properly grounded on the surface, not floating, with contact shadows where it touches the ground. CRITICAL: Maintain exact original dimensions, scale, position, colors, and all details from &lt;img&gt;0&lt;/img&gt;. Only modify lighting on character.</pre>
+          </div>
+        </div>
+      
+        </div>
+    </div>
+
+    <!-- Debug Section -->
+    <div class="debug-section">
+        <h2>🔍 Debug Info - API Request Configurations</h2>
+        <div class="debug-apis">
+            
+        <div class="debug-api-card">
+          <h3>🎨 Reve</h3>
+          <div class="debug-item">
+            <strong>HTTP Method:</strong>
+            <code>POST</code>
+          </div>
+          <div class="debug-item">
+            <strong>Endpoint:</strong>
+            <code>https://api.reve.com/v1/image/remix</code>
+          </div>
+          <div class="debug-item">
+            <strong>Headers:</strong>
+            <pre>{
+  "Authorization": "Bearer ************************************",
+  "Accept": "application/json",
+  "Content-Type": "application/json"
+}</pre>
+          </div>
+          <div class="debug-item">
+            <strong>Body:</strong>
+            <pre>{
+  "prompt": "Integrate the 3D character from &lt;img&gt;0&lt;/img&gt; into the real scene from &lt;img&gt;1&lt;/img&gt; replacing the position and size of the referenced similar character... [truncated]",
+  "reference_images": [
+    "&lt;figure base64 - img 0&gt;",
+    "&lt;background base64 - img 1&gt;"
+  ],
+  "version": "latest"
+  // Note: No aspect_ratio = uses background dimensions automatically
+}</pre>
+          </div>
+        </div>
+      
+        </div>
+    </div>
+
+    <script>
+        // Copy prompt function
+        function copyPrompt(button, apiName) {
+            const promptElement = document.getElementById('prompt-' + apiName);
+            const text = promptElement.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '✅ Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                button.textContent = '❌ Failed';
+                setTimeout(() => {
+                    button.textContent = '📋 Copy';
+                }, 2000);
+            });
+        }
+
+        // Initialize comparison sliders
+        document.querySelectorAll('.comparison-range').forEach(slider => {
+            const resultIndex = slider.getAttribute('data-result');
+            const resultCard = slider.closest('.result-item');
+            const afterImage = resultCard.querySelector('.after-image');
+            const sliderLine = resultCard.querySelector('.slider-line');
+            
+            function updateComparison(value) {
+                const percentage = value;
+                afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+                sliderLine.style.left = percentage + '%';
+            }
+            
+            slider.addEventListener('input', function(e) {
+                updateComparison(e.target.value);
+            });
+            
+            // Initialize with default value
+            updateComparison(50);
+        });
+    </script>
+</body>
+</html>
