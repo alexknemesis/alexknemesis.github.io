@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reve Edit Result - rsid-eb401cbef5cae06daa48945c7eda1db2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e5e7eb;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header h1 {
+            color: #60a5fa;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .header p {
+            color: #9ca3af;
+            font-size: 1.1em;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #60a5fa;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #9ca3af;
+            font-size: 0.9em;
+        }
+
+        .comparison-section {
+            max-width: 1000px;
+            margin: 0 auto 40px auto;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .comparison-section h2 {
+            color: #e5e7eb;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .comparison-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 15px auto;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.1);
+            background: #0b1222;
+        }
+
+        .comparison-images {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .before-image, .after-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .before-image img, .after-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .after-image {
+            clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 10px;
+            padding: 8px 16px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .before-overlay {
+            left: 10px;
+        }
+
+        .after-overlay {
+            right: 10px;
+        }
+
+        .slider-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 3px;
+            height: 100%;
+            background: #60a5fa;
+            cursor: ew-resize;
+            z-index: 10;
+        }
+
+        .slider-line::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #60a5fa;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+        }
+
+        .slider-line::after {
+            content: '◀▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .slider-control {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .comparison-range {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .comparison-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #60a5fa;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+        }
+
+        .comparison-range::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #60a5fa;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: #9ca3af;
+            font-size: 0.9em;
+        }
+
+        .instruction-section {
+            max-width: 1000px;
+            margin: 0 auto 40px auto;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .instruction-section h2 {
+            color: #e5e7eb;
+            margin-bottom: 15px;
+        }
+
+        .instruction-content {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .instruction-text {
+            color: #e5e7eb;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+        }
+
+        .download-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .download-btn {
+            padding: 12px 24px;
+            background: rgba(96, 165, 250, 0.2);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            color: #93c5fd;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-btn:hover {
+            background: rgba(96, 165, 250, 0.3);
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .comparison-container {
+                aspect-ratio: 1 / 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .download-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎨 Reve Edit Result</h1>
+        <p>Generated on 10/6/2025, 7:44:52 PM</p>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-value">rsid-eb401cbef5cae06daa48945c7eda1db2</div>
+            <div class="stat-label">Request ID</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">30</div>
+            <div class="stat-label">Credits Used</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">27800</div>
+            <div class="stat-label">Credits Remaining</div>
+        </div>
+    </div>
+
+    <div class="comparison-section">
+        <h2>🔄 Before / After Comparison</h2>
+        <div class="comparison-container">
+            <div class="comparison-images">
+                <div class="before-image">
+                    <img src="original.png" alt="Original">
+                    <div class="image-overlay before-overlay">Original</div>
+                </div>
+                <div class="after-image">
+                    <img src="edited.png" alt="Edited">
+                    <div class="image-overlay after-overlay">Edited</div>
+                </div>
+                <div class="slider-line"></div>
+            </div>
+        </div>
+        <div class="slider-control">
+            <input type="range" class="comparison-range" min="0" max="100" value="50" id="comparisonSlider">
+            <div class="slider-labels">
+                <span>Original</span>
+                <span>Edited</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction-section">
+        <h2>📝 Edit Instruction</h2>
+        <div class="instruction-content">
+            <div class="instruction-text">Integrate the 3D character realistically into the scene. Apply environmental lighting effects that match the surrounding environment: natural shadow casting on surfaces, ambient occlusion, and subtle reflections. Use soft, natural shadows that match the scene&#039;s lighting intensity, avoid overly dark or harsh shadows. Ensure the character is properly grounded on the surface, not floating, with contact shadows where it touches the ground. Blend the character seamlessly with the background by matching color temperature, ambient light, and atmospheric perspective. CRITICAL: Maintain the exact pose, body orientation, position, scale, and all details of the character. Only adjust lighting, shadows, and color grading to achieve photorealistic integration with the environment.</div>
+        </div>
+    </div>
+
+    <div class="download-section">
+        <a href="original.png" download="original.png" class="download-btn">
+            📥 Download Original
+        </a>
+        <a href="edited.png" download="edited_rsid-eb401cbef5cae06daa48945c7eda1db2.png" class="download-btn">
+            📥 Download Edited
+        </a>
+    </div>
+
+    <script>
+        // Initialize comparison slider
+        const slider = document.getElementById('comparisonSlider');
+        const afterImage = document.querySelector('.after-image');
+        const sliderLine = document.querySelector('.slider-line');
+        
+        function updateComparison(value) {
+            const percentage = value;
+            afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+            sliderLine.style.left = percentage + '%';
+        }
+        
+        slider.addEventListener('input', function(e) {
+            updateComparison(e.target.value);
+        });
+        
+        // Initialize with default value
+        updateComparison(50);
+    </script>
+</body>
+</html>

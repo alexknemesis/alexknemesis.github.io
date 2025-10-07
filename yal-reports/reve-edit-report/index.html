@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reve Edit Reports - Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e5e7eb;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header h1 {
+            color: #60a5fa;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .header p {
+            color: #9ca3af;
+            font-size: 1.1em;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #60a5fa;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #9ca3af;
+            font-size: 0.9em;
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.3);
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: #0b1222;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .image-container img {
+            transform: scale(1.05);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(96, 165, 250, 0.9);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.75em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .item-info {
+            padding: 20px;
+        }
+
+        .item-title {
+            color: #e5e7eb;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .item-date {
+            color: #9ca3af;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+        }
+
+        .view-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            background: rgba(96, 165, 250, 0.2);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            color: #93c5fd;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .view-btn:hover {
+            background: rgba(96, 165, 250, 0.3);
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #9ca3af;
+            font-size: 1.2em;
+        }
+
+        .loading::after {
+            content: '...';
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        .filter-bar {
+            max-width: 1400px;
+            margin: 0 auto 30px auto;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-input {
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: #e5e7eb;
+            font-size: 1em;
+            outline: none;
+            min-width: 300px;
+            transition: all 0.2s;
+        }
+
+        .filter-input:focus {
+            border-color: rgba(96, 165, 250, 0.5);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .filter-input::placeholder {
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-input {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎨 Reve Edit Gallery</h1>
+        <p>Explore all edit comparisons</p>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-value" id="totalEdits">0</div>
+            <div class="stat-label">Total Edits</div>
+        </div>
+    </div>
+
+    <div class="filter-bar">
+        <input type="text" class="filter-input" id="searchInput" placeholder="🔍 Search by ID or date...">
+    </div>
+
+    <div class="gallery-container">
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="loading">Loading gallery</div>
+        </div>
+    </div>
+
+    <script>
+        // List of all edit folders (this will be auto-populated)
+        const editFolders = [
+            'edit_2025-10-06_23_rsid-eb401cbef5cae06daa48945c7eda1db2',
+            'edit_2025-10-06_23_rsid-ec70941f938571f460ec4ed0508e3bf4',
+            'edit_2025-10-07_00_rsid-255a8d1aee99f1af7d545cef9de1c274',
+            'edit_2025-10-07_00_rsid-30135aff322ee83fcd6e7ca38bfd2b4a',
+            'edit_2025-10-07_00_rsid-50b4fd84ff8a1c54a04aab28d5694256',
+            'edit_2025-10-07_00_rsid-5ade9fa7d8aaa9f7910a524582fdeb81',
+            'edit_2025-10-07_00_rsid-703f31569341b273d95993dd1af214d4',
+            'edit_2025-10-07_00_rsid-86b7368ff9f9af8bef7bb01f782be9ae',
+            'edit_2025-10-07_00_rsid-88670b138dee1d153ce283d1f96ea9e6',
+            'edit_2025-10-07_00_rsid-8a24a243250715a724801e0147df0043',
+            'edit_2025-10-07_00_rsid-94caa020f993be612d7ce27f849d232f',
+            'edit_2025-10-07_00_rsid-a828db845dfc31a0800d0e1eec2c9b28',
+            'edit_2025-10-07_00_rsid-c2898a57af37533e6cd275861a026cde',
+            'edit_2025-10-07_00_rsid-de9be4c97d8b5e0c3e7c0cc34b00aa8a',
+            'edit_2025-10-07_00_rsid-f65e2a682d2284e5e33ac6e3f55360cd',
+            'edit_2025-10-07_01_rsid-1b92fed7330cb26b5e66b4f0065c1e2b'
+        ];
+
+        function extractInfo(folderName) {
+            const match = folderName.match(/edit_(\d{4})-(\d{2})-(\d{2})_(\d{2})_rsid-(.+)/);
+            if (match) {
+                const [, year, month, day, hour, rsid] = match;
+                return {
+                    date: `${day}/${month}/${year}`,
+                    time: `${hour}:00`,
+                    rsid: rsid,
+                    fullDate: `${year}-${month}-${day} ${hour}:00`
+                };
+            }
+            return null;
+        }
+
+        function createGalleryItem(folderName) {
+            const info = extractInfo(folderName);
+            if (!info) return null;
+
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.dataset.search = `${folderName} ${info.rsid} ${info.date}`.toLowerCase();
+
+            item.innerHTML = `
+                <div class="image-container">
+                    <img src="${folderName}/edited.png" 
+                         alt="Edit ${info.rsid}" 
+                         loading="lazy"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22250%22%3E%3Crect fill=%22%230b1222%22 width=%22300%22 height=%22250%22/%3E%3Ctext fill=%22%239ca3af%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22%3EImage not available%3C/text%3E%3C/svg%3E'">
+                    <div class="image-overlay">EDITED</div>
+                </div>
+                <div class="item-info">
+                    <div class="item-title">📌 ${info.rsid}</div>
+                    <div class="item-date">📅 ${info.date} - ${info.time}</div>
+                    <a href="${folderName}/comparison.html" class="view-btn">
+                        👁️ View Comparison
+                    </a>
+                </div>
+            `;
+
+            item.addEventListener('click', (e) => {
+                if (e.target.tagName !== 'A') {
+                    window.location.href = `${folderName}/comparison.html`;
+                }
+            });
+
+            return item;
+        }
+
+        function renderGallery(folders = editFolders) {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            if (folders.length === 0) {
+                grid.innerHTML = '<div class="loading">No results found</div>';
+                return;
+            }
+
+            folders.forEach(folder => {
+                const item = createGalleryItem(folder);
+                if (item) {
+                    grid.appendChild(item);
+                }
+            });
+
+            document.getElementById('totalEdits').textContent = folders.length;
+        }
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                renderGallery(editFolders);
+                return;
+            }
+
+            const filteredFolders = editFolders.filter(folder => {
+                return folder.toLowerCase().includes(searchTerm);
+            });
+
+            renderGallery(filteredFolders);
+        });
+
+        // Initialize gallery
+        renderGallery();
+    </script>
+</body>
+</html>
