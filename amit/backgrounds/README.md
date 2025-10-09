@@ -1,45 +1,45 @@
 # 📸 Travel Photography Gallery
 
-Una interfaz web moderna y responsiva para visualizar 30 fotografías de viajes icónicas con sus descripciones detalladas.
+A modern and responsive web interface to view 30 iconic travel photographs with their detailed descriptions.
 
-## ✨ Características
+## ✨ Features
 
-- **Galería Responsiva**: Grid adaptativo que funciona en todos los dispositivos
-- **Filtros por Categoría**: Organiza las imágenes por tipo (Architecture, Landscape, Cityscape, Night)
-- **Modal de Vista Detallada**: Visualización ampliada con descripción completa
-- **Navegación Intuitiva**: 
-  - Click en cualquier imagen para ampliar
-  - Botones Previous/Next para navegar entre imágenes
-  - Teclado: Flechas izquierda/derecha para navegar, ESC para cerrar
-- **Animaciones Suaves**: Transiciones fluidas y efectos hover
-- **Lazy Loading**: Carga optimizada de imágenes
-- **Diseño Moderno**: UI limpia con gradientes, sombras y efectos glassmorphism
+- **Responsive Gallery**: Adaptive grid that works on all devices
+- **Category Filters**: Organize images by type (Architecture, Landscape, Cityscape, Night)
+- **Detailed View Modal**: Enlarged view with complete description
+- **Intuitive Navigation**: 
+  - Click on any image to enlarge
+  - Previous/Next buttons to navigate between images
+  - Keyboard: Left/Right arrow keys to navigate, ESC to close
+- **Smooth Animations**: Fluid transitions and hover effects
+- **Lazy Loading**: Optimized image loading
+- **Modern Design**: Clean UI with gradients, shadows, and glassmorphism effects
 
-## 📁 Estructura de Archivos
+## 📁 File Structure
 
 ```
 backgrounds/
-├── index.html          # Estructura HTML principal
-├── styles.css          # Estilos CSS responsivos
-├── script.js           # Lógica de interacción
-├── data.js             # Datos de las 30 imágenes
-├── README.md           # Este archivo
-└── images/             # Carpeta con 30 imágenes PNG
+├── index.html          # Main HTML structure
+├── styles.css          # Responsive CSS styles
+├── script.js           # Interaction logic
+├── data.js             # Data for the 30 images
+├── README.md           # This file
+└── images/             # Folder with 30 PNG images
     ├── background (1).png
     ├── background (2).png
     └── ...
 ```
 
-## 🚀 Uso
+## 🚀 Usage
 
-1. Abre `index.html` en tu navegador
-2. Explora la galería usando los filtros de categoría
-3. Haz click en cualquier imagen para ver detalles completos
-4. Navega entre imágenes usando los botones o el teclado
+1. Open `index.html` in your browser
+2. Explore the gallery using the category filters
+3. Click on any image to see full details
+4. Navigate between images using the buttons or keyboard
 
-## 🎨 Títulos de Imágenes
+## 🎨 Image Titles
 
-Cada imagen tiene un título descriptivo extraído de su contenido:
+Each image has a descriptive title extracted from its content:
 
 1. Santorini at Golden Hour
 2. Eiffel Tower Night Sparkle
@@ -51,18 +51,18 @@ Cada imagen tiene un título descriptivo extraído de su contenido:
 8. Tokyo Shibuya at Night
 9. Venice Grand Canal Dawn
 10. Mykonos Windmills Sunset
-... y 20 más
+... and 20 more
 
-## 🛠️ Tecnologías
+## 🛠️ Technologies
 
-- **HTML5**: Estructura semántica
+- **HTML5**: Semantic structure
 - **CSS3**: Grid, Flexbox, Animations, Custom Properties
-- **JavaScript Vanilla**: Sin dependencias externas
+- **Vanilla JavaScript**: No external dependencies
 - **Responsive Design**: Mobile-first approach
 
-## 📱 Compatibilidad
+## 📱 Compatibility
 
-- ✅ Chrome/Edge (últimas versiones)
-- ✅ Firefox (últimas versiones)
-- ✅ Safari (últimas versiones)
-- ✅ Dispositivos móviles y tablets
+- ✅ Chrome/Edge (latest versions)
+- ✅ Firefox (latest versions)
+- ✅ Safari (latest versions)
+- ✅ Mobile devices and tablets
