@@ -18,13 +18,14 @@ function renderGallery() {
         const card = document.createElement('div');
         card.className = 'gallery-item';
         card.onclick = () => openModal(index);
-        
+        const num = String(item.id).padStart(2, '0');
+
         card.innerHTML = `
             <div class="image-container">
                 <img src="${item.image}" alt="${item.title}" loading="lazy">
                 <div class="image-overlay">
                     <div class="overlay-content">
-                        <h3>${item.title}</h3>
+                        <h3><span class="index-badge">${num}</span> ${item.title}</h3>
                         <span class="category-badge">${item.category}</span>
                     </div>
                 </div>
@@ -66,7 +67,8 @@ function openModal(index) {
     const item = filteredData[currentImageIndex];
     
     document.getElementById('modal-image').src = item.image;
-    document.getElementById('modal-title').textContent = item.title;
+    const num = String(item.id).padStart(2, '0');
+    document.getElementById('modal-title').textContent = `${num} - ${item.title}`;
     document.getElementById('modal-description').textContent = item.description;
     document.getElementById('image-counter').textContent = `${currentImageIndex + 1} / ${filteredData.length}`;
     
@@ -99,7 +101,8 @@ function navigateImage(direction) {
     
     setTimeout(() => {
         modalImage.src = item.image;
-        document.getElementById('modal-title').textContent = item.title;
+        const num = String(item.id).padStart(2, '0');
+        document.getElementById('modal-title').textContent = `${num} - ${item.title}`;
         document.getElementById('modal-description').textContent = item.description;
         document.getElementById('image-counter').textContent = `${currentImageIndex + 1} / ${filteredData.length}`;
         modalImage.style.opacity = '1';

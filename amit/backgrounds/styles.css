@@ -158,6 +158,26 @@ header h1 {
     font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Numeric index badge for gallery titles */
+.index-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
 }
 
 .category-badge {
