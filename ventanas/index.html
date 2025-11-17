@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Cortes de Ventanas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen py-8 px-4">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h1 class="text-3xl font-bold text-indigo-900 mb-2">🪟 Calculadora de Cortes de Ventanas</h1>
+            <p class="text-gray-600">Herramienta para calcular dimensiones de piezas de ventanas</p>
+        </div>
+
+        <!-- Input Form -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h2 class="text-xl font-semibold text-indigo-800 mb-4">Nueva Ventana</h2>
+            <form id="windowForm" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Ancho (cm)</label>
+                    <input type="number" id="ancho" step="0.01" min="0.01" required 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Alto (cm)</label>
+                    <input type="number" id="alto" step="0.01" min="0.01" required 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Número de Hojas</label>
+                    <select id="hojas" required 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        <option value="2">2 hojas</option>
+                        <option value="3">3 hojas</option>
+                        <option value="4">4 hojas</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button type="submit" 
+                            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 shadow-md">
+                        ➕ Agregar Ventana
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-indigo-800">Resultados</h2>
+                    <div class="flex gap-2">
+                        <button onclick="exportToImage()" 
+                                class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 shadow-md text-sm">
+                            📷 Descargar Imagen
+                        </button>
+                        <button onclick="exportToPDF()" 
+                                class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 shadow-md text-sm">
+                            📄 Descargar PDF
+                        </button>
+                        <button onclick="clearResults()" 
+                                class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 shadow-md text-sm">
+                            🗑️ Limpiar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Table Container -->
+                <div id="tableContainer" class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-indigo-600 text-white">
+                                <th class="border border-indigo-700 px-4 py-3 text-left">#</th>
+                                <th class="border border-indigo-700 px-4 py-3 text-left">Ancho (cm)</th>
+                                <th class="border border-indigo-700 px-4 py-3 text-left">Alto (cm)</th>
+                                <th class="border border-indigo-700 px-4 py-3 text-left">Hojas</th>
+                                <th class="border border-indigo-700 px-4 py-3 text-left">Jaba (J) (cm)</th>
+                                <th class="border border-indigo-700 px-4 py-3 text-left">P+E (cm)</th>
+                                <th class="border border-indigo-700 px-4 py-3 text-left">RS+RI (cm)</th>
+                                <th class="border border-indigo-700 px-4 py-3 text-left">Z+C (cm)</th>
+                                <th class="border border-indigo-700 px-4 py-3 text-center">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsTable">
+                            <!-- Results will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-lg font-semibold text-indigo-800 mb-3">📋 Información sobre los cálculos</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="font-semibold text-indigo-700 mb-2">Jaba (J):</p>
+                    <p>J = Alto de la ventana</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="font-semibold text-indigo-700 mb-2">Pierna + Enganche (P+E):</p>
+                    <p>P+E = Alto de la ventana - 3.2</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="font-semibold text-indigo-700 mb-2">Riel Superior + Riel Inferior (RS+RI):</p>
+                    <p>RS+RI = Ancho de la ventana - 1.6</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="font-semibold text-indigo-700 mb-2">Zócalo + Cabezal (Z+C):</p>
+                    <p>2 hojas: (RS+RI + 2.4) / 2</p>
+                    <p>3 hojas: (RS+RI + 5.7) / 3</p>
+                    <p>4 hojas: (RS+RI + 5) / 4</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
