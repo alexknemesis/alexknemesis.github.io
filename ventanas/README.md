@@ -34,7 +34,7 @@ Herramienta web intuitiva y responsiva para calcular dimensiones de piezas de ve
 
 Todas las medidas se manejan en **centímetros (cm)** con **2 decimales**.
 
-### Jaba (J)
+### Jamba (J)
 ```
 J = Alto de la ventana
 ```

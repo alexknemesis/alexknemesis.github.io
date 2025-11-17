@@ -44,8 +44,8 @@ function agregarVentana() {
 
 // Función para calcular las piezas según las fórmulas
 function calcularPiezas(ancho, alto, hojas) {
-    // Jaba (J) = alto de la ventana
-    const jaba = alto;
+    // Jamba (J) = alto de la ventana
+    const jamba = alto;
 
     // Pierna + Enganche (P+E) = alto de la ventana - 3.2
     const piernaEnganche = alto - 3.2;
@@ -70,7 +70,7 @@ function calcularPiezas(ancho, alto, hojas) {
     }
 
     return {
-        jaba: redondear(jaba),
+        jamba: redondear(jamba),
         piernaEnganche: redondear(piernaEnganche),
         rielSuperiorInferior: redondear(rielSuperiorInferior),
         zocaloCabezal: redondear(zocaloCabezal)
@@ -95,7 +95,7 @@ function actualizarTabla() {
             <td class="border border-gray-300 px-4 py-3">${ventana.ancho.toFixed(2)}</td>
             <td class="border border-gray-300 px-4 py-3">${ventana.alto.toFixed(2)}</td>
             <td class="border border-gray-300 px-4 py-3 text-center">${ventana.hojas}</td>
-            <td class="border border-gray-300 px-4 py-3 font-medium">${ventana.jaba.toFixed(2)}</td>
+            <td class="border border-gray-300 px-4 py-3 font-medium">${ventana.jamba.toFixed(2)}</td>
             <td class="border border-gray-300 px-4 py-3 font-medium">${ventana.piernaEnganche.toFixed(2)}</td>
             <td class="border border-gray-300 px-4 py-3 font-medium">${ventana.rielSuperiorInferior.toFixed(2)}</td>
             <td class="border border-gray-300 px-4 py-3 font-medium">${ventana.zocaloCabezal.toFixed(2)}</td>
@@ -181,13 +181,13 @@ async function exportToPDF() {
         doc.text(`Fecha: ${fecha}`, 14, 28);
         
         // Preparar datos para la tabla
-        const headers = [['#', 'Ancho (cm)', 'Alto (cm)', 'Hojas', 'Jaba (J) (cm)', 'P+E (cm)', 'RS+RI (cm)', 'Z+C (cm)']];
+        const headers = [['#', 'Ancho (cm)', 'Alto (cm)', 'Hojas', 'Jamba (J) (cm)', 'P+E (cm)', 'RS+RI (cm)', 'Z+C (cm)']];
         const data = ventanas.map(v => [
             v.id,
             v.ancho.toFixed(2),
             v.alto.toFixed(2),
             v.hojas,
-            v.jaba.toFixed(2),
+            v.jamba.toFixed(2),
             v.piernaEnganche.toFixed(2),
             v.rielSuperiorInferior.toFixed(2),
             v.zocaloCabezal.toFixed(2)
