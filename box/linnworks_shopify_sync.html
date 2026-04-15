@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barcode Sync Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --surface: #16161a;
+    --surface2: #1e1e24;
+    --border: #2a2a35;
+    --accent: #5cffb0;
+    --accent2: #ff6b6b;
+    --text: #e8e8f0;
+    --text-muted: #7a7a90;
+    --text-dim: #4a4a60;
+    --pro: #5cffb0;
+    --con: #ff6b6b;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ---- HEADER ---- */
+  header {
+    padding: 48px 24px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  h1 span {
+    color: var(--accent);
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 520px;
+    font-weight: 300;
+  }
+
+  /* ---- TOGGLE ---- */
+  .toggle-wrapper {
+    max-width: 860px;
+    margin: 0 auto 48px;
+    padding: 0 24px;
+  }
+
+  .toggle-track {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 4px;
+    gap: 4px;
+    position: relative;
+  }
+
+  .toggle-btn {
+    position: relative;
+    z-index: 2;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 22px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: color 0.25s ease;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+
+  .toggle-btn.active {
+    color: #0d0d0f;
+  }
+
+  .toggle-pill {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
+    background: var(--accent);
+    border-radius: 100px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s ease;
+    z-index: 1;
+  }
+
+  .toggle-label {
+    margin-left: 20px;
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: 'DM Mono', monospace;
+    vertical-align: middle;
+  }
+
+  /* ---- CONTENT PANELS ---- */
+  .panel {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    display: none;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .panel.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---- SHARED SECTION STYLES ---- */
+  .section {
+    margin-bottom: 36px;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+
+  /* ---- CARD ---- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  .badge-recommended {
+    background: rgba(92, 255, 176, 0.12);
+    color: var(--accent);
+    border: 1px solid rgba(92, 255, 176, 0.25);
+  }
+
+  .badge-alt {
+    background: rgba(255, 107, 107, 0.1);
+    color: var(--accent2);
+    border: 1px solid rgba(255, 107, 107, 0.2);
+  }
+
+  /* ---- PROS/CONS ---- */
+  .pro-con-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 540px) {
+    .pro-con-grid { grid-template-columns: 1fr; }
+  }
+
+  .pro-list, .con-list {
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+  }
+
+  .pro-list .list-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--pro);
+    margin-bottom: 12px;
+  }
+
+  .con-list .list-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--con);
+    margin-bottom: 12px;
+  }
+
+  .pro-list li, .con-list li {
+    font-size: 13px;
+    color: var(--text-muted);
+    list-style: none;
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .pro-list li::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+    color: var(--pro);
+    font-weight: 600;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .con-list li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--con);
+    font-weight: 600;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ---- STEPS ---- */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(92, 255, 176, 0.1);
+    border: 1px solid rgba(92, 255, 176, 0.25);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .step-body { flex: 1; }
+  .step-body strong { color: var(--text); font-weight: 500; font-size: 13px; }
+  .step-body p { margin: 2px 0 0; font-size: 12px; }
+
+  /* ---- CODE ---- */
+  .code-block {
+    background: #0a0a0c;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    overflow-x: auto;
+    margin-bottom: 8px;
+    white-space: pre;
+  }
+
+  .code-block .comment { color: var(--text-dim); }
+
+  /* ---- TABLE ---- */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .data-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table td {
+    padding: 10px 14px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(42,42,53,0.5);
+    vertical-align: top;
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .td-yes { color: var(--pro); font-family: 'DM Mono', monospace; font-size: 12px; }
+  .td-no  { color: var(--con); font-family: 'DM Mono', monospace; font-size: 12px; }
+  .td-label { color: var(--text); font-weight: 500; }
+
+  /* ---- WHEN-TO-RUN TABLE ---- */
+  .when-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .when-table th {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-dim); text-align: left;
+    padding: 8px 12px; border-bottom: 1px solid var(--border);
+  }
+  .when-table td {
+    padding: 9px 12px; color: var(--text-muted);
+    border-bottom: 1px solid rgba(42,42,53,0.4);
+    line-height: 1.5;
+  }
+  .when-table tr:last-child td { border-bottom: none; }
+  .when-table td:first-child { color: var(--text); font-weight: 500; }
+
+  /* ---- CREDENTIAL ROW ---- */
+  .cred-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) { .cred-grid { grid-template-columns: 1fr; } }
+
+  .cred-item {
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    border-left: 2px solid var(--accent);
+  }
+
+  .cred-service {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .cred-item p { font-size: 12px; margin: 0; }
+
+  /* ---- SIMPLE PANEL SPECIFIC ---- */
+  .big-question {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(16px, 3vw, 22px);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .analogy-box {
+    background: var(--surface2);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    border-left: 3px solid var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .analogy-box p {
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .analogy-box p em {
+    color: var(--text);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .verdict-box {
+    background: rgba(92, 255, 176, 0.06);
+    border: 1px solid rgba(92, 255, 176, 0.2);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .verdict-box .verdict-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .verdict-box .verdict-text {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .verdict-box p {
+    font-size: 13px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .option-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .option-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .option-icon.ai { background: rgba(255, 107, 107, 0.1); }
+  .option-icon.script { background: rgba(92, 255, 176, 0.1); }
+
+  .option-body h3 { margin-bottom: 6px; }
+  .option-body p { margin: 0; font-size: 13px; }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+
+  .tag-bad { background: rgba(255,107,107,0.1); color: var(--con); border: 1px solid rgba(255,107,107,0.2); }
+  .tag-good { background: rgba(92,255,176,0.08); color: var(--pro); border: 1px solid rgba(92,255,176,0.2); }
+
+  .simple-step {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding: 14px;
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+  }
+
+  .simple-step-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .simple-step-text strong {
+    display: block;
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .simple-step-text span {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .run-box {
+    background: var(--surface2);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .run-command {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    color: var(--accent);
+    display: block;
+    margin: 8px 0 4px;
+  }
+
+  .run-label { font-size: 12px; color: var(--text-dim); }
+
+  .when-simple {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .when-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    font-size: 13px;
+  }
+
+  .when-trigger {
+    flex-shrink: 0;
+    font-weight: 500;
+    color: var(--text);
+    min-width: 160px;
+  }
+
+  .when-action { color: var(--text-muted); }
+
+  @media (max-width: 480px) {
+    .when-row { flex-direction: column; gap: 2px; }
+    .when-trigger { min-width: unset; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">Project Brief</p>
+  <h1>Linnworks <span>→</span> Shopify<br>Barcode Sync</h1>
+  <p class="subtitle">A tool that reads barcodes from Linnworks and writes them into the correct Shopify product variants, automatically.</p>
+</header>
+
+<div class="toggle-wrapper">
+  <div style="display:flex; align-items:center; flex-wrap:wrap; gap:12px;">
+    <div class="toggle-track" id="toggleTrack">
+      <div class="toggle-pill" id="togglePill"></div>
+      <button class="toggle-btn active" id="btnSimple" onclick="switchMode('simple')">Plain English</button>
+      <button class="toggle-btn" id="btnTech" onclick="switchMode('tech')">Technical</button>
+    </div>
+    <span class="toggle-label">switch view</span>
+  </div>
+</div>
+
+<!-- ===================== SIMPLE PANEL ===================== -->
+<div class="panel active" id="panel-simple">
+
+  <div class="section">
+    <p class="section-label">The problem</p>
+    <p class="big-question">You have barcodes in one system. They need to be in another. How do you move them without doing it manually one by one?</p>
+    <div class="analogy-box">
+      <p>Think of it like a mail sorter. Linnworks has a list of product codes and their barcodes. Shopify has the same products but is missing those barcodes. <em>The tool reads from the first list and fills in the gaps in the second.</em> Once it's built, it does this automatically in seconds, no matter how many products there are.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Two ways to do it</p>
+
+    <div class="option-card">
+      <div class="option-icon ai">🤖</div>
+      <div class="option-body">
+        <h3>Option A: Let an AI assistant do it live</h3>
+        <p>You tell an AI agent what to do in plain English and it makes changes directly in your Shopify store, in real time.</p>
+        <div class="tag-row">
+          <span class="tag tag-bad">No undo if it goes wrong</span>
+          <span class="tag tag-bad">Can't run again easily</span>
+          <span class="tag tag-bad">You have to feed it the Linnworks data manually</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="option-card">
+      <div class="option-icon script">⚙️</div>
+      <div class="option-body">
+        <h3>Option B: Build a small automated script</h3>
+        <p>A small program that connects to both Linnworks and Shopify on its own, reads the barcodes, and writes them in. You run it with one command.</p>
+        <div class="tag-row">
+          <span class="tag tag-good">Logs everything it does</span>
+          <span class="tag tag-good">Safe to rerun anytime</span>
+          <span class="tag tag-good">Anyone can run it</span>
+          <span class="tag tag-good">Skips products already done</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict-box">
+    <p class="verdict-label">Recommendation</p>
+    <p class="verdict-text">Build the script. Run it when needed.</p>
+    <p>Option B takes a few hours to build once, but then it works forever. New products added? Run it again. Barcodes corrected? Run it again. No risk, no manual work.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-label">How it works, step by step</p>
+    <div class="simple-step">
+      <span class="simple-step-icon">📋</span>
+      <div class="simple-step-text">
+        <strong>Step 1: Read Linnworks</strong>
+        <span>The script logs into Linnworks and pulls a list of every SKU with its barcode.</span>
+      </div>
+    </div>
+    <div class="simple-step">
+      <span class="simple-step-icon">🔍</span>
+      <div class="simple-step-text">
+        <strong>Step 2: Find it in Shopify</strong>
+        <span>For each SKU, it searches Shopify for the matching product variant.</span>
+      </div>
+    </div>
+    <div class="simple-step">
+      <span class="simple-step-icon">✏️</span>
+      <div class="simple-step-text">
+        <strong>Step 3: Write the barcode</strong>
+        <span>If found, it saves the barcode to that variant. If not found, it just logs a note and moves on.</span>
+      </div>
+    </div>
+    <div class="simple-step">
+      <span class="simple-step-icon">📄</span>
+      <div class="simple-step-text">
+        <strong>Step 4: Show a summary</strong>
+        <span>When it's done, it prints how many were updated, how many were skipped, and if anything went wrong.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">How to run it</p>
+    <div class="run-box">
+      <p class="run-label">One command in the terminal:</p>
+      <span class="run-command">node barcode-sync.js</span>
+      <p class="run-label">That's it. The script does the rest.</p>
+    </div>
+    <div class="run-box">
+      <p class="run-label">Want to preview without making changes?</p>
+      <span class="run-command" style="font-size:14px;">node barcode-sync.js --dry-run</span>
+      <p class="run-label">Shows you what it would do, touches nothing.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">When to run it again</p>
+    <div class="when-simple">
+      <div class="when-row">
+        <span class="when-trigger">New products added</span>
+        <span class="when-action">Run the script. It automatically skips anything already synced.</span>
+      </div>
+      <div class="when-row">
+        <span class="when-trigger">Barcodes corrected</span>
+        <span class="when-action">Run it again. It overwrites old values with the new ones.</span>
+      </div>
+      <div class="when-row">
+        <span class="when-trigger">Big product import</span>
+        <span class="when-action">Run it after the import is done.</span>
+      </div>
+      <div class="when-row">
+        <span class="when-trigger">On a schedule</span>
+        <span class="when-action">It can be set to run automatically every week or month.</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== TECHNICAL PANEL ===================== -->
+<div class="panel" id="panel-tech">
+
+  <div class="section">
+    <p class="section-label">Scope</p>
+    <h2>What the project does</h2>
+    <p>Reads barcode values from Linnworks (keyed by SKU) and writes them into the matching product variants on Shopify via <code style="font-family:'DM Mono',monospace;font-size:12px;color:var(--accent);">productVariantUpdate</code> GraphQL mutation. Designed to be idempotent and reusable across future product additions.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Approach A</p>
+    <div class="card">
+      <div class="card-header">
+        <h2 style="margin:0;">Shopify AI Toolkit (interactive agent)</h2>
+        <span class="badge badge-alt">Not recommended for this</span>
+      </div>
+      <p>Connects an AI agent (Claude Code, Cursor, etc.) to the Shopify platform via MCP/plugin. The agent generates and executes GraphQL mutations against the live store through natural language prompts.</p>
+      <div class="pro-con-grid">
+        <div class="pro-list">
+          <p class="list-title">Pros</p>
+          <ul>
+            <li>No boilerplate to write for Shopify side</li>
+            <li>Agent has live access to correct API schemas</li>
+            <li>Useful for ad-hoc one-off fixes</li>
+            <li>Accelerates development of the actual script</li>
+          </ul>
+        </div>
+        <div class="con-list">
+          <p class="list-title">Cons</p>
+          <ul>
+            <li>No native Linnworks integration. Data must be fed manually</li>
+            <li>No draft mode, no preview, no rollback. Mutations are immediate</li>
+            <li>Not reliably repeatable. Each session is stateless</li>
+            <li>Unsafe at scale. Misinterpretation = live store damage before detection</li>
+            <li>Not a reusable tool. Cannot be scheduled or handed off</li>
+            <li>Telemetry: prompts and queries sent to Shopify servers by default</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Approach B</p>
+    <div class="card">
+      <div class="card-header">
+        <h2 style="margin:0;">Standalone script</h2>
+        <span class="badge badge-recommended">Recommended</span>
+      </div>
+      <p>A Node.js (or Python) script that authenticates with both APIs, loops through Linnworks SKUs, queries Shopify for matching variants, and executes <code style="font-family:'DM Mono',monospace;font-size:12px;color:var(--accent);">productVariantUpdate</code> mutations. Idempotent: skips variants that already have a barcode set.</p>
+      <div class="pro-con-grid">
+        <div class="pro-list">
+          <p class="list-title">Pros</p>
+          <ul>
+            <li>Fully automated end-to-end, no manual steps post-setup</li>
+            <li>Idempotent: safe to rerun at any time without side effects</li>
+            <li>Produces a full execution log per run</li>
+            <li>Dry-run mode available (reads and logs, no writes)</li>
+            <li>Testable against a Shopify dev store before production</li>
+            <li>Runnable by non-technical operators after setup</li>
+            <li>Schedulable via cron or task scheduler</li>
+          </ul>
+        </div>
+        <div class="con-list">
+          <p class="list-title">Cons</p>
+          <ul>
+            <li>Upfront development time (a few hours with AI assistance)</li>
+            <li>One-time credential setup required</li>
+            <li>Needs updating if either API introduces breaking changes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Where the AI Toolkit still helps</p>
+    <div class="card" style="border-color: rgba(92,255,176,0.2);">
+      <p style="margin:0;">Even with Approach B, the Toolkit accelerates the build. With Claude Code + Shopify plugin, the agent generates correct GraphQL mutations and pagination patterns on the first pass because it has live schema access. Without it, an AI assistant guesses at field names and often fails silently. The Toolkit is the build accelerator, not the execution engine.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Execution flow</p>
+    <div class="card">
+      <div class="code-block"><span class="comment">// Loop logic (pseudo)</span>
+linnworks.getInventoryItems() → [{ sku, barcode }, ...]
+
+for each item:
+  variant = shopify.findVariantBySKU(item.sku)
+  if !variant → log("SKU not found") → continue
+  if variant.barcode === item.barcode → log("skip") → continue
+  shopify.productVariantUpdate(variant.id, { barcode: item.barcode })
+  log("updated")</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Runtime usage</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Standard run</strong>
+          <p>Reads Linnworks, writes to Shopify, outputs summary.</p>
+          <div class="code-block" style="margin-top:8px;">node barcode-sync.js</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Dry-run (preview mode)</strong>
+          <p>Reads and logs what it would do. No mutations executed.</p>
+          <div class="code-block" style="margin-top:8px;">node barcode-sync.js --dry-run</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Scheduled (optional)</strong>
+          <p>Add to crontab or a task scheduler for recurring sync.</p>
+          <div class="code-block" style="margin-top:8px;"><span class="comment"># weekly on Monday at 8am</span>
+0 8 * * 1 node /path/to/barcode-sync.js</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">When to rerun</p>
+    <div class="card" style="padding:16px 20px;">
+      <table class="when-table">
+        <thead><tr><th>Trigger</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>New products added to Linnworks</td><td>Run the script. Already-synced variants are skipped automatically.</td></tr>
+          <tr><td>Barcodes corrected in Linnworks</td><td>Run the script. It overwrites stale values with the new ones.</td></tr>
+          <tr><td>Bulk product import</td><td>Run after import is complete.</td></tr>
+          <tr><td>Scheduled sync</td><td>Set up cron/task scheduler to run weekly or monthly.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Credentials (one-time setup)</p>
+    <div class="cred-grid">
+      <div class="cred-item">
+        <p class="cred-service">Shopify</p>
+        <p>Admin API access token with <code style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);">write_products</code> scope. Generate in Shopify Admin under Apps > Develop apps.</p>
+      </div>
+      <div class="cred-item">
+        <p class="cred-service">Linnworks</p>
+        <p>Application ID + Secret + session token. Obtained from the Linnworks developer portal. Stored locally in a <code style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);">.env</code> file, never committed to the codebase.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Summary comparison</p>
+    <div class="card" style="padding:16px 20px; overflow-x:auto;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>AI Toolkit (interactive)</th>
+            <th>Standalone script</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-label">Setup time</td><td>Minutes</td><td>A few hours</td></tr>
+          <tr><td class="td-label">Linnworks integration</td><td class="td-no">Manual</td><td class="td-yes">Automatic</td></tr>
+          <tr><td class="td-label">Reusable</td><td class="td-no">No</td><td class="td-yes">Yes</td></tr>
+          <tr><td class="td-label">Safe at scale</td><td class="td-no">No</td><td class="td-yes">Yes (dry-run + log)</td></tr>
+          <tr><td class="td-label">Non-dev can run</td><td class="td-no">No</td><td class="td-yes">Yes</td></tr>
+          <tr><td class="td-label">Rollback</td><td class="td-no">None</td><td>Manual restore from log</td></tr>
+          <tr><td class="td-label">Best for</td><td>Exploration / dev assistance</td><td class="td-yes">Production sync tool</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function switchMode(mode) {
+    const simple = document.getElementById('panel-simple');
+    const tech   = document.getElementById('panel-tech');
+    const btnS   = document.getElementById('btnSimple');
+    const btnT   = document.getElementById('btnTech');
+    const pill   = document.getElementById('togglePill');
+    const track  = document.getElementById('toggleTrack');
+
+    if (mode === 'simple') {
+      simple.classList.add('active');
+      tech.classList.remove('active');
+      btnS.classList.add('active');
+      btnT.classList.remove('active');
+      pill.style.transform = 'translateX(0)';
+      pill.style.width = btnS.offsetWidth + 'px';
+    } else {
+      tech.classList.add('active');
+      simple.classList.remove('active');
+      btnT.classList.add('active');
+      btnS.classList.remove('active');
+      pill.style.transform = 'translateX(' + btnS.offsetWidth + 'px)';
+      pill.style.width = btnT.offsetWidth + 'px';
+    }
+  }
+
+  // Init pill size
+  window.addEventListener('load', () => {
+    const btnS = document.getElementById('btnSimple');
+    const pill = document.getElementById('togglePill');
+    pill.style.width = btnS.offsetWidth + 'px';
+  });
+
+  window.addEventListener('resize', () => {
+    const btnS = document.getElementById('btnSimple');
+    const btnT = document.getElementById('btnTech');
+    const pill = document.getElementById('togglePill');
+    const isSimple = document.getElementById('panel-simple').classList.contains('active');
+    if (isSimple) {
+      pill.style.width = btnS.offsetWidth + 'px';
+      pill.style.transform = 'translateX(0)';
+    } else {
+      pill.style.width = btnT.offsetWidth + 'px';
+      pill.style.transform = 'translateX(' + btnS.offsetWidth + 'px)';
+    }
+  });
+</script>
+
+</body>
+</html>
