@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kling Video Credit Calculator</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface2: #222222;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.14);
+    --text: #f0f0f0;
+    --text-muted: #888;
+    --text-dim: #555;
+    --accent: #c8f135;
+    --accent-text: #0f0f0f;
+    --info-bg: rgba(200,241,53,0.07);
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  header {
+    margin-bottom: 2.5rem;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 520px) {
+    .controls { grid-template-columns: 1fr; }
+    .result-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .ctrl-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  select {
+    background: var(--surface);
+    border: 0.5px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-size: 14px;
+    padding: 9px 12px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 32px;
+    cursor: pointer;
+    width: 100%;
+    transition: border-color 0.15s;
+  }
+
+  select:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .audio-note {
+    font-size: 13px;
+    color: #c8a435;
+    background: rgba(200,164,53,0.1);
+    border: 0.5px solid rgba(200,164,53,0.25);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    margin-bottom: 1.25rem;
+    display: none;
+  }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  .metric {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+
+  .metric .lbl {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .metric .val {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+
+  .metric .val.neutral { color: var(--text); }
+
+  .metric .sub {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .billing-toggle {
+    display: flex;
+    gap: 0;
+    background: var(--surface);
+    border: 0.5px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+  }
+
+  .billing-toggle button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    letter-spacing: 0.02em;
+  }
+
+  .billing-toggle button.active {
+    background: var(--accent);
+    color: var(--accent-text);
+  }
+
+  .billing-toggle .disc {
+    font-size: 10px;
+    font-weight: 600;
+    background: rgba(200,241,53,0.15);
+    color: var(--accent);
+    padding: 1px 5px;
+    border-radius: 4px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  .billing-toggle button.active .disc {
+    background: rgba(0,0,0,0.2);
+    color: var(--accent-text);
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+
+  .plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    table-layout: fixed;
+  }
+
+  .plan-table th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .plan-table td {
+    padding: 11px 12px;
+    border-bottom: 0.5px solid var(--border);
+    color: var(--text-muted);
+    vertical-align: middle;
+  }
+
+  .plan-table tr:last-child td { border-bottom: none; }
+
+  .plan-table tr.best-row td {
+    background: var(--info-bg);
+    color: var(--text);
+  }
+
+  .plan-table td.plan-name {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .plan-table td.highlight-val {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+    background: var(--accent);
+    color: var(--accent-text);
+  }
+
+  .na { color: var(--text-dim); }
+
+  hr {
+    border: none;
+    border-top: 0.5px solid var(--border);
+    margin: 2rem 0;
+  }
+
+  footer {
+    margin-top: 3rem;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <p class="eyebrow">Kling AI</p>
+    <h1>Credit Calculator</h1>
+    <p class="subtitle">Estimate how many videos you can generate per month on each plan.</p>
+  </header>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <label for="model">Model</label>
+      <select id="model">
+        <option value="v26">Video 2.6</option>
+        <option value="v30t">Video 3.0 Turbo</option>
+        <option value="v30">Video 3.0</option>
+      </select>
+    </div>
+    <div class="ctrl-group">
+      <label for="resolution">Resolution</label>
+      <select id="resolution"></select>
+    </div>
+    <div class="ctrl-group">
+      <label for="duration">Duration</label>
+      <select id="duration"></select>
+    </div>
+    <div class="ctrl-group">
+      <label for="audio">Audio</label>
+      <select id="audio"></select>
+    </div>
+  </div>
+
+  <div id="audio-note" class="audio-note"></div>
+
+  <div class="result-grid">
+    <div class="metric">
+      <div class="lbl">Credits / video</div>
+      <div class="val" id="credits-per-video">—</div>
+    </div>
+  </div>
+
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+    <div class="section-title" style="margin-bottom:0;">Plan comparison</div>
+    <div class="billing-toggle">
+      <button id="btn-monthly" class="active" onclick="setBilling('monthly')">Monthly</button>
+      <button id="btn-yearly" onclick="setBilling('yearly')">Yearly <span class="disc">-34%</span></button>
+    </div>
+  </div>
+
+  <table class="plan-table" id="plan-table">
+    <thead>
+      <tr>
+        <th style="width:22%">Plan</th>
+        <th style="width:20%">Price / mo</th>
+        <th style="width:20%">Credits / mo</th>
+        <th style="width:18%">Videos / mo</th>
+        <th style="width:20%">Cost / video</th>
+      </tr>
+    </thead>
+    <tbody id="plan-tbody"></tbody>
+  </table>
+
+  <hr>
+  <footer>Credit costs sourced from Kling AI pricing. Calculations are estimates; actual costs may vary.</footer>
+
+</div>
+
+<script>
+const PLANS = {
+  monthly: [
+    { name: 'Basic',    price: 0,      credits: 0 },
+    { name: 'Standard', price: 8.8,    credits: 660 },
+    { name: 'Pro',      price: 32.56,  credits: 3000 },
+    { name: 'Premier',  price: 64.99,  credits: 8000 },
+    { name: 'Ultra',    price: 127.99, credits: 26000 },
+  ],
+  yearly: [
+    { name: 'Basic',    price: 0,              credits: 0 },
+    { name: 'Standard', price: 79.2 / 12,      credits: 660 },
+    { name: 'Pro',      price: 293.04 / 12,    credits: 3000 },
+    { name: 'Premier',  price: 728.64 / 12,    credits: 8000 },
+    { name: 'Ultra',    price: 1429.99 / 12,   credits: 26000 },
+  ],
+};
+
+const modelConfigs = {
+  v26: {
+    resolutions: ['720p', '1080p'],
+    durations: { '720p': [5, 10], '1080p': [5, 10] },
+    audio: { '720p': ['na'], '1080p': ['no', 'yes'] },
+    audioLabel: { na: 'N/A (not available at 720p)', no: 'No', yes: 'Yes' },
+  },
+  v30t: {
+    resolutions: ['720p', '1080p'],
+    durations: { '720p': [3,4,5,6,7,8,9,10,11,12,13,14,15], '1080p': [3,4,5,6,7,8,9,10,11,12,13,14,15] },
+    audio: { '720p': ['na'], '1080p': ['na'] },
+    audioLabel: { na: 'N/A (not available for this model)' },
+  },
+  v30: {
+    resolutions: ['720p', '1080p', '4K'],
+    durations: {
+      '720p': [3,4,5,6,7,8,9,10,11,12,13,14,15],
+      '1080p': [3,4,5,6,7,8,9,10,11,12,13,14,15],
+      '4K': [3,4,5,6,7,8,9,10,11,12,13,14,15],
+    },
+    audio: { '720p': ['no', 'yes'], '1080p': ['no', 'yes'], '4K': ['no', 'yes'] },
+    audioLabel: { no: 'No', yes: 'Yes' },
+  },
+};
+
+let billing = 'monthly';
+
+function getCredits(model, res, dur, audio) {
+  dur = parseInt(dur);
+  if (model === 'v26') {
+    if (res === '720p') return audio === 'na' ? (dur === 5 ? 15 : 30) : null;
+    if (res === '1080p') {
+      if (audio === 'no')  return dur === 5 ? 25 : 50;
+      if (audio === 'yes') return dur === 5 ? 50 : 100;
+    }
+  }
+  if (model === 'v30t') {
+    const rate = res === '720p' ? 8 : res === '1080p' ? 10 : null;
+    return rate ? rate * dur : null;
+  }
+  if (model === 'v30') {
+    const rateMap = { '720p': { no: 6, yes: 9 }, '1080p': { no: 8, yes: 12 }, '4K': { no: 30, yes: 30 } };
+    const r = rateMap[res];
+    return r ? (audio === 'yes' ? r.yes : r.no) * dur : null;
+  }
+  return null;
+}
+
+function populateSelect(el, options, labelFn) {
+  const prev = el.value;
+  el.innerHTML = '';
+  options.forEach(v => {
+    const o = document.createElement('option');
+    o.value = v;
+    o.textContent = labelFn ? labelFn(v) : v;
+    el.appendChild(o);
+  });
+  if (options.map(String).includes(prev)) el.value = prev;
+}
+
+function setBilling(val) {
+  billing = val;
+  document.getElementById('btn-monthly').classList.toggle('active', val === 'monthly');
+  document.getElementById('btn-yearly').classList.toggle('active', val === 'yearly');
+  recalculate();
+}
+
+function update() {
+  const model = document.getElementById('model').value;
+  const cfg = modelConfigs[model];
+  const resSel = document.getElementById('resolution');
+  const durSel = document.getElementById('duration');
+  const audSel = document.getElementById('audio');
+
+  populateSelect(resSel, cfg.resolutions);
+  const res = resSel.value || cfg.resolutions[0];
+  resSel.value = res;
+
+  populateSelect(durSel, cfg.durations[res], v => v + 's');
+  const finalDur = durSel.value || String(cfg.durations[res][0]);
+  durSel.value = finalDur;
+
+  populateSelect(audSel, cfg.audio[res], v => cfg.audioLabel[v]);
+  const finalAud = audSel.value || cfg.audio[res][0];
+  audSel.value = finalAud;
+
+  recalculate();
+}
+
+function recalculate() {
+  const model = document.getElementById('model').value;
+  const cfg = modelConfigs[model];
+  const res = document.getElementById('resolution').value || cfg.resolutions[0];
+  const dur = parseInt(document.getElementById('duration').value) || cfg.durations[res][0];
+  const aud = document.getElementById('audio').value || cfg.audio[res][0];
+
+  const note = document.getElementById('audio-note');
+  if (aud === 'na') {
+    note.style.display = 'block';
+    note.textContent = model === 'v30t'
+      ? 'Audio generation is not available for Video 3.0 Turbo.'
+      : 'Audio generation is not available at 720p for Video 2.6.';
+  } else {
+    note.style.display = 'none';
+  }
+
+  const credits = getCredits(model, res, dur, aud);
+  document.getElementById('credits-per-video').textContent = credits !== null ? credits : '—';
+
+  renderTable(credits);
+}
+
+function renderTable(creditsPerVideo) {
+  const tbody = document.getElementById('plan-tbody');
+  tbody.innerHTML = '';
+  const plans = PLANS[billing];
+
+  let bestIdx = -1;
+  let bestCost = Infinity;
+  const rows = plans.map((p, i) => {
+    if (!p.credits || !creditsPerVideo) return { plan: p, videos: null, costPerVideo: null };
+    const videos = Math.floor(p.credits / creditsPerVideo);
+    const costPerVideo = videos > 0 && p.price > 0 ? p.price / videos : null;
+    if (costPerVideo !== null && costPerVideo < bestCost) { bestCost = costPerVideo; bestIdx = i; }
+    return { plan: p, videos, costPerVideo };
+  });
+
+  rows.forEach((row, i) => {
+    const tr = document.createElement('tr');
+    if (i === bestIdx) tr.classList.add('best-row');
+
+    const priceStr = row.plan.price === 0 ? 'Free' :
+      '$' + row.plan.price.toFixed(2) + (billing === 'yearly' ? '<span style="font-size:11px;color:var(--text-dim)"> /mo*</span>' : '<span style="font-size:11px;color:var(--text-dim)"> /mo</span>');
+
+    const videosStr = row.videos !== null ? row.videos.toLocaleString() : '<span class="na">—</span>';
+    const costStr = row.costPerVideo !== null
+      ? '$' + row.costPerVideo.toFixed(2)
+      : '<span class="na">—</span>';
+
+    tr.innerHTML = `
+      <td class="plan-name">${row.plan.name}${i === bestIdx ? '<span class="badge">Best value</span>' : ''}</td>
+      <td>${priceStr}</td>
+      <td>${row.plan.credits ? row.plan.credits.toLocaleString() : '<span class="na">—</span>'}</td>
+      <td>${videosStr}</td>
+      <td class="${i === bestIdx ? 'highlight-val' : ''}">${costStr}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  const note = tbody.closest('table').parentNode.querySelector('.yearly-note');
+  if (note) note.remove();
+  if (billing === 'yearly') {
+    const p = document.createElement('p');
+    p.className = 'yearly-note';
+    p.style.cssText = 'font-size:11px;color:var(--text-dim);margin-top:8px;';
+    p.textContent = '* Prices shown as monthly equivalent. Billed annually.';
+    tbody.closest('table').after(p);
+  }
+}
+
+['model', 'resolution', 'duration', 'audio'].forEach(id => {
+  document.getElementById(id).addEventListener('change', () => {
+    update();
+  });
+});
+
+update();
+</script>
+</body>
+</html>
